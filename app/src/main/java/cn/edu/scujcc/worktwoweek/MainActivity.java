@@ -39,10 +39,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //获取碎片可以直接通过getSupportFragmentManager调用
         FragmentManager fragmentManager = getSupportFragmentManager();
         //通过beginTransaction()开启一个事务
+        //获取碎片实例
+        //RightFragment right=(RightFragment)getSupportFragmentManager().findFragmentById(R.id.right_layout);
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         //通过replace来获取待替换的碎片id和实例
         fragmentTransaction.replace(R.id.right_layout, Fragment);
-        //使用commit进行提交
+        //按下back不会直接退出程序，而是建回到上一个碎片
+        fragmentManager.addOnBackStackChangedListener(null);
+        //使用commit进行提交事务
         fragmentTransaction.commit();
 
     }
