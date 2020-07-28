@@ -1,2 +1,5 @@
 Fragment
-1.
+一般手机和平板的屏幕差距过大时，我们会使用碎片来调节控件，使得控件在平板上显示的更加合理，
+1.建立两个碎片活动，继承于Fragment，在OncreateView方法中用LayoutInflaer的Inflaer来获取获取到碎片布局，最后在主布局中用fragment来结合两个碎片布局，就是一个简单的适用于平板上的碎片布局。
+2、动态添加碎片
+新建一个碎片活动，activity_main中添加一个FragmentLayout布局，然后在MainActivity中做动态添加处理，给左侧的碎片中的按钮绑定一个点击事件，用replaceFragment方法点击这个按钮机会添加新建的这个碎片，
