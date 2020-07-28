@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mLeft = findViewById(R.id.leftfragment);
+        mLeft = findViewById(R.id.left);
         mLeft.setOnClickListener(this);
         //调用replaceFragment把RightFragment换成AnotherFragment。
         replaceFragment(new RightFragment());
@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         switch (view.getId()) {
             //点击左侧按钮，把右侧right换成anotherright
-            case R.id.leftfragment:
+            case R.id.left:
                 replaceFragment(new AnotherRight());
                 break;
             default:
@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //通过beginTransaction()开启一个事务
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         //通过replace来获取待替换的碎片id和实例
-        fragmentTransaction.replace(R.id.right_fragment, Fragment);
+        fragmentTransaction.replace(R.id.right_layout, Fragment);
         //使用commit进行提交
         fragmentTransaction.commit();
 

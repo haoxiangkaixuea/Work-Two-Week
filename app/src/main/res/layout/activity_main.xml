@@ -7,7 +7,7 @@
     tools:context=".MainActivity">
 
     <fragment
-        android:id="@+id/leftfragment"
+        android:id="@+id/left_fragment"
         android:name="cn.edu.scujcc.worktwoweek.LeftFragment"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -20,11 +20,13 @@
         app:layout_constraintVertical_bias="0.224" />
 
     <FrameLayout
-        android:id="@+id/right_fragment"
+        android:id="@+id/right_layout"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
     </FrameLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
