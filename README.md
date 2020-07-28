@@ -10,5 +10,5 @@ Fragment
 
 
 然后创建FragmentTransaction实例，通过调用beginTransaction()开启一个事务，
-通过replace来获取待替换的碎片id和实例，
+通过replace来获取待替换的碎片id和实例/n
 最后用commit提交事务。
