@@ -30,3 +30,11 @@ Fragment
 
 
 最后用commit提交事务。
+
+在活动中使用碎片可以通过FragmentManager的findfragmentId来获取碎片实例，
+
+RightFragment right=(RightFragment)getSupportFragmentManager().findFragmentById(R.id.right_layout);
+
+在碎片中使用活动可以用getActivity方法获取活动实例:
+
+MainActyvity main=(MainActivity) getActivity();
