@@ -7,6 +7,8 @@ Fragment
 在onclick方法中告诉点击左侧按钮，把右侧right换成anotherright，
 创建待添加的碎片实例,在replaceFragment中
 获取用FragmentManager，先通过getSupportFragmentManager调用直接获取碎片
+
+
 然后创建FragmentTransaction实例，通过调用beginTransaction()开启一个事务，
 通过replace来获取待替换的碎片id和实例，
 最后用commit提交事务。
