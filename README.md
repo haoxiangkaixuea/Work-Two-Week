@@ -105,4 +105,26 @@ service
 Service会经历onCreate->onStart,stopService的时候直接onDestroy，如果是调用者(TestServiceHolder)自己直接退出而没有调用stopService的话，Service会一直在后台运行。下次TestServiceHolder再起来可以stopService。
 
 2、通过bindService
-Service只会运行onCreate，这个时候TestServiceHolder和TestService绑定在一起，TestServiceHolder退出了，Srevice就会调用onUnbind->onDestroyed所谓绑定在一起就共存亡了。bindService用于绑定一个服务。这样当bindService(intent,conn,flags)后，就会绑定一个服务。这样做可以获得这个服务对象本身，而用startService(intent)的方法只能启动服务。
+Service只会运行onCreate，这个时候TestServiceHolder和TestService绑定在一起，TestServiceHolder退出了，Srevice就会调用onUnbind->onDestroyed所谓绑定在一起就共存亡了。
+
+bindService用于绑定一个服务。这时会调用服务中的onBind方法，这样当bindService(intent,conn,flags)后，就会绑定一个服务。这样做可以获得这个服务对象本身，而用startService(intent)的方法只能启动服务。
+
+方法：在服务里面创建一个继承自Binder的类(Binder实现IBinder接口)，最后活动该类的实例，在onBind里面返回实例对象。
+
+在活动里面创建ServiceConnection类，冲重写类里面的onServiceDisconnected和onServiceConnected方法，
+
+3、服务与活动之间的通信
+
+需要用到服务的onBind方法，调用方可以获取到onBind方法里返回的IBinder对象的实例，这样就可以与服务进行自由的通信
+
+4、前台服务于普通服务最大的区别就是前台服务在运行的时候就会有一个运行图标在系统的状态栏显示，下拉状态栏可以看到更加详细的信息，类似于通知，
+
+方法：构建类似于通知的对象，调用startForeground让Myservice变成一个前台服务，在系统状态栏显示出来
+
+5、IntentService的使用
+
+ 为避免忘记创建子线程，或者忘记调用selfstop()方法，创建一个简单的异步的，会自动停止的服务，Android专门提供了一个IntentService类来解决这个问题
+
+方法：创建一个MyIntentService类继承自IntentService,重写里面的MyIntentService和onHandleIntent方法，
+
+
