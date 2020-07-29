@@ -14,12 +14,32 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <!--     静态注册   -->
         <receiver
-            android:name=".BootCompletRecevier"
+            android:name=".BootCompletReceiver"
             android:enabled="true"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+        <!--   标准广播     -->
+        <receiver
+            android:name=".MyBroaodcastReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.example.broadcasttest.MY_BROADCAST" />
+            </intent-filter>
+        </receiver>
+        <!--   有序广播-->
+        <receiver
+            android:name=".AnotherBroadcastReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter android:priority="100">
+                <!--  设置广播优先级-->
+                <action android:name="com.example.broadcasttest.MY_BROADCAST" />
             </intent-filter>
         </receiver>
 

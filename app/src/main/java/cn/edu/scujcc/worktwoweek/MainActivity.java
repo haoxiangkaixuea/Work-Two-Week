@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button mStart, mStop;
     private Button bindService, onBindService;
     private Button startIntentSerice;
+    private Button sendBroadcast;
     private MyService myService;
     private MyService.DownLoadBinder downLoadBinder;
     public static final String TAG = "Service";
@@ -98,6 +99,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         registerReceiver(networkChangeRecevier, intentFilter);
         //最后NetworkChangeRecevier会接收到一条值为android.net.conn.CONNECTIVITY_CHANGE的广播
         //实现了监听网路变化的功能
+
+        //标准广播
+        sendBroadcast=findViewById(R.id.send_broadcast);
+        sendBroadcast.setOnClickListener(v->{
+            Intent intent=new Intent("com.example.broadcasttest.MY_BROADCAST");
+           // sendBroadcast(intent);
+
+            //有序广播
+            sendOrderedBroadcast(intent,null);
+        });
+
+        //有序广播
+
     }
 
     private ServiceConnection connection = new ServiceConnection() {
