@@ -95,3 +95,14 @@ Activity----->Fragment
 在Activity中创建Bundle包，并调用Fragment中的setArguments(Bundle bundle)方法。
 
 
+
+
+service
+
+服务的生命中周期只有onCreate(),onStart(),onDestroy().两种启动方式对于服务的生命周期的影响是不一样的
+
+1、通过startService
+Service会经历onCreate->onStart,stopService的时候直接onDestroy，如果是调用者(TestServiceHolder)自己直接退出而没有调用stopService的话，Service会一直在后台运行。下次TestServiceHolder再起来可以stopService。
+
+2、通过bindService
+Service只会运行onCreate，这个时候TestServiceHolder和TestService绑定在一起，TestServiceHolder退出了，Srevice就会调用onUnbind->onDestroyed所谓绑定在一起就共存亡了。bindService用于绑定一个服务。这样当bindService(intent,conn,flags)后，就会绑定一个服务。这样做可以获得这个服务对象本身，而用startService(intent)的方法只能启动服务。
