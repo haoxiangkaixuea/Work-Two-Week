@@ -1,6 +1,6 @@
 package cn.edu.scujcc.worktwoweek;
 
-import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -9,12 +9,14 @@ import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 
+import org.jetbrains.annotations.NotNull;
+
 public class RightFragment extends Fragment {
     public static final String TAG = "RightFragment";
 
     @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
+    public void onAttach(@NotNull Context context) {
+        super.onAttach(context);
         Log.d(TAG, "onAttach");
     }
 

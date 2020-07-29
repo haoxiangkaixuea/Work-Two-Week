@@ -11,8 +11,8 @@
         android:id="@+id/anotherright"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="164dp"
-        android:layout_marginTop="204dp"
+        android:layout_marginStart="176dp"
+        android:layout_marginTop="280dp"
         android:text="AnotherRight"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

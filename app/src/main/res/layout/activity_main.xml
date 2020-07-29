@@ -4,29 +4,91 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="horizontal"
     tools:context=".MainActivity">
+
+<!--    <Button-->
+<!--        android:id="@+id/button2"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="4dp"-->
+<!--        android:text="Button"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.535"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--        <fragment-->
+<!--        android:id="@+id/right_fragment"-->
+<!--        android:name="cn.edu.scujcc.worktwoweek.RightFragment"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:layout_marginTop="80dp"-->
+<!--        android:layout_weight="3"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.0"-->
+<!--        app:layout_constraintStart_toStartOf="parent"/>-->
+
+    <Button
+        android:id="@+id/startservice"
+        android:layout_width="156dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="STARTSERVICE"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <fragment
         android:id="@+id/left_fragment"
         android:name="cn.edu.scujcc.worktwoweek.LeftFragment"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.224" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <FrameLayout
         android:id="@+id/right_layout"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
+        android:layout_width="125dp"
+        android:layout_height="125dp"
         android:layout_weight="1"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintStart_toEndOf="@+id/left_fragment"></FrameLayout>
 
-    </FrameLayout>
+    <Button
+        android:id="@+id/stopservice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="STOPSERVICE"
+        app:layout_constraintStart_toStartOf="@+id/startservice"
+        app:layout_constraintTop_toBottomOf="@+id/startservice" />
+
+    <Button
+        android:id="@+id/bind_service"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Bind_Service"
+        app:layout_constraintStart_toStartOf="@+id/stopservice"
+        app:layout_constraintTop_toBottomOf="@+id/stopservice" />
+
+    <Button
+        android:id="@+id/onbind_service"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Onbind_Service"
+        app:layout_constraintStart_toStartOf="@+id/bind_service"
+        app:layout_constraintTop_toBottomOf="@+id/bind_service" />
+
+    <Button
+        android:id="@+id/start_intent_service"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="StartIntentService"
+        app:layout_constraintStart_toStartOf="@+id/onbind_service"
+        app:layout_constraintTop_toBottomOf="@+id/onbind_service" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

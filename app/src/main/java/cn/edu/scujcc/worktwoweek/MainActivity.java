@@ -5,14 +5,12 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.app.IntentService;
 import android.content.ComponentName;
-import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.IBinder;
-import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -20,7 +18,10 @@ import android.widget.Button;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private Button mLeft, changButton;
     private Button mStart, mStop;
+    private Button bindService, onBindService;
+    private Button startIntentSerice;
     private MyService myService;
+    private MyService.DownLoadBinder downLoadBinder;
     public static final String TAG = "Service";
 //    private String fragmentName;
 //    private OnButtonClickedListener buttonClickedListener;
@@ -62,26 +63,38 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mStart.setOnClickListener(this);
         mStop.setOnClickListener(this);
 
-//        Intent startIntent = new Intent(this, MyService.class);
-//        bindService(startIntent, connection, Context.BIND_AUTO_CREATE);
+        // Intent startIntent = new Intent(this, MyService.class);
+        // bindService(startIntent, connection, Context.BIND_AUTO_CREATE);
+
+
+        //service与activity 之间的通信
+        bindService = findViewById(R.id.bind_service);
+        onBindService = findViewById(R.id.onbind_service);
+        bindService.setOnClickListener(this);
+        onBindService.setOnClickListener(this);
+
+        //IntentService
+        startIntentSerice=findViewById(R.id.start_intent_service);
+        startIntentSerice.setOnClickListener(this);
 
     }
 
-//    private ServiceConnection connection = new ServiceConnection() {
-//
-//        @Override
-//        public void onServiceDisconnected(ComponentName name) {
-//            myService = null;
-//        }
-//
-//        @Override
-//        public void onServiceConnected(ComponentName name, IBinder service) {
-//            myService = ((MyService.MyBinder) service).getService();
-//            System.out.println("Service连接成功");
-//            // 执行Service内部自己的方法
-//            myService.excute();
-//        }
-//    };
+    private ServiceConnection connection = new ServiceConnection() {
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+        }
+
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            downLoadBinder = ((MyService.DownLoadBinder) service);
+            downLoadBinder.startDownload();
+            downLoadBinder.seeProgress();
+            //System.out.println("Service连接成功");
+            // 执行Service内部自己的方法
+            //myService.excute();
+        }
+    };
 
     @Override
     protected void onDestroy() {
@@ -89,7 +102,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onDestroy();
         //unbindService(connection);
     }
-
 
 
     @Override
@@ -110,8 +122,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Intent stopIntent = new Intent(this, MyService.class);
                 stopService(stopIntent);
                 break;
+           //服务与活动之间的通信
+            case R.id.bind_service:
+                Intent bindintent=new Intent(this,MyService.class);
+                bindService(bindintent,connection,BIND_AUTO_CREATE);//绑定服务
+                break;
+            case R.id.onbind_service:
+                unbindService(connection);//解绑服务
+                break;
+
+            //IntentService
+            case R.id.start_intent_service:
+                Log.d("MainActivity","Thread id is"+ Thread.currentThread().getId());
+                Intent intentservice=new Intent(this,MyIntentService.class);
+                startService(intentservice);
             default:
                 break;
+
         }
     }
 
