@@ -5,22 +5,92 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
+import android.content.ServiceConnection;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.IBinder;
+import android.os.Message;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-    private Button mLeft;
+    private Button mLeft, changButton;
+    private Button mStart, mStop;
+    private MyService myService;
+    public static final String TAG = "Service";
+//    private String fragmentName;
+//    private OnButtonClickedListener buttonClickedListener;
+//    /**
+//     * 定义一个Handler用于接收黄色碎片给Activity发出来的指令
+//     */
+//    public Handler handler = new Handler() {
+//        @Override
+//        public void handleMessage(Message msg) {
+//            super.handleMessage(msg);
+//            if (msg != null) {
+//                switch (msg.what) {
+//                    case 101:
+//                        /**
+//                         * 接收到黄色碎片发来的指令,Activity执行替换操作
+//                         */
+//                        fragmentName = LeftFragment.class.getName();
+//                        replaceFragment(R.id.left_fragment, fragmentName);
+//                        break;
+//                    default:
+//                        break;
+//                }
+//            }
+//        }
+//    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //Fragment
         mLeft = findViewById(R.id.left);
         mLeft.setOnClickListener(this);
-        //调用replaceFragment把RightFragment换成AnotherFragment。
         replaceFragment(new RightFragment());
+
+        //Service
+        mStart = findViewById(R.id.startservice);
+        mStop = findViewById(R.id.stopservice);
+        mStart.setOnClickListener(this);
+        mStop.setOnClickListener(this);
+
+//        Intent startIntent = new Intent(this, MyService.class);
+//        bindService(startIntent, connection, Context.BIND_AUTO_CREATE);
+
     }
+
+//    private ServiceConnection connection = new ServiceConnection() {
+//
+//        @Override
+//        public void onServiceDisconnected(ComponentName name) {
+//            myService = null;
+//        }
+//
+//        @Override
+//        public void onServiceConnected(ComponentName name, IBinder service) {
+//            myService = ((MyService.MyBinder) service).getService();
+//            System.out.println("Service连接成功");
+//            // 执行Service内部自己的方法
+//            myService.excute();
+//        }
+//    };
+
+    @Override
+    protected void onDestroy() {
+        Log.d("TAG", "onDestroy");
+        super.onDestroy();
+        //unbindService(connection);
+    }
+
+
 
     @Override
     public void onClick(View view) {
@@ -29,12 +99,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.left:
                 replaceFragment(new AnotherRight());
                 break;
+
+            //启动服务
+            case R.id.startservice:
+                Intent startIntent = new Intent(this, MyService.class);
+                startService(startIntent);
+                break;
+            //停止服务
+            case R.id.stopservice:
+                Intent stopIntent = new Intent(this, MyService.class);
+                stopService(stopIntent);
+                break;
             default:
                 break;
         }
     }
 
-    //创建待添加的碎片实例
+
     private void replaceFragment(Fragment Fragment) {
         //获取碎片可以直接通过getSupportFragmentManager调用
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -50,4 +131,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         fragmentTransaction.commit();
 
     }
+
 }
