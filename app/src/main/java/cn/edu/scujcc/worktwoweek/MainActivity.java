@@ -6,14 +6,23 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.app.IntentService;
+import android.content.BroadcastReceiver;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.ServiceConnection;
+import android.net.ConnectivityManager;
+import android.net.Network;
+import android.net.NetworkCapabilities;
+import android.net.NetworkInfo;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private Button mLeft, changButton;
@@ -23,6 +32,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private MyService myService;
     private MyService.DownLoadBinder downLoadBinder;
     public static final String TAG = "Service";
+    private IntentFilter intentFilter;
+    private NetworkChangeRecevier networkChangeRecevier;
 //    private String fragmentName;
 //    private OnButtonClickedListener buttonClickedListener;
 //    /**
@@ -74,9 +85,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         onBindService.setOnClickListener(this);
 
         //IntentService
-        startIntentSerice=findViewById(R.id.start_intent_service);
+        startIntentSerice = findViewById(R.id.start_intent_service);
         startIntentSerice.setOnClickListener(this);
 
+        //动态注册广播
+        intentFilter = new IntentFilter();
+        //当网路发生变化是，系统会发出下面的广播，我们接收器要监听什么广播，就添加什么action
+        intentFilter.addAction("android.net.conn.CONNECTIVITY_CHANGE");
+        //创建NetworkChangeRecevier实例
+        networkChangeRecevier = new NetworkChangeRecevier();
+        //调用registerReceiver注册，把前面两个实例对象都传进去。
+        registerReceiver(networkChangeRecevier, intentFilter);
+        //最后NetworkChangeRecevier会接收到一条值为android.net.conn.CONNECTIVITY_CHANGE的广播
+        //实现了监听网路变化的功能
     }
 
     private ServiceConnection connection = new ServiceConnection() {
@@ -100,6 +121,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onDestroy() {
         Log.d("TAG", "onDestroy");
         super.onDestroy();
+        //动态注册的广播接收器在最后一定要在onDestroy中取消注册,调用unbindService方法取消注册
+        unregisterReceiver(networkChangeRecevier);
         //unbindService(connection);
     }
 
@@ -122,10 +145,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Intent stopIntent = new Intent(this, MyService.class);
                 stopService(stopIntent);
                 break;
-           //服务与活动之间的通信
+            //服务与活动之间的通信
             case R.id.bind_service:
-                Intent bindintent=new Intent(this,MyService.class);
-                bindService(bindintent,connection,BIND_AUTO_CREATE);//绑定服务
+                Intent bindintent = new Intent(this, MyService.class);
+                bindService(bindintent, connection, BIND_AUTO_CREATE);//绑定服务
                 break;
             case R.id.onbind_service:
                 unbindService(connection);//解绑服务
@@ -133,8 +156,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             //IntentService
             case R.id.start_intent_service:
-                Log.d("MainActivity","Thread id is"+ Thread.currentThread().getId());
-                Intent intentservice=new Intent(this,MyIntentService.class);
+                Log.d("MainActivity", "Thread id is" + Thread.currentThread().getId());
+                Intent intentservice = new Intent(this, MyIntentService.class);
                 startService(intentservice);
             default:
                 break;
@@ -157,6 +180,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //使用commit进行提交事务
         fragmentTransaction.commit();
 
+    }
+
+    //动态注册广播
+    public class NetworkChangeRecevier extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            ConnectivityManager connectivity = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                if (connectivity != null) {
+                    Network networks = connectivity.getActiveNetwork();
+                    NetworkCapabilities networkCapabilities = connectivity.getNetworkCapabilities(networks);
+                    if (networkCapabilities != null) {
+                        if (networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)) {
+                            Toast.makeText(context, "-----------wifi", Toast.LENGTH_SHORT).show();
+                            Log.e("-----------wifi", "wifi");
+                        } else if (networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)) {
+                            Toast.makeText(context, "-----------流量", Toast.LENGTH_SHORT).show();
+                            Log.e("-----------流量", "手机流量");
+                        }
+                    } else {
+                        Toast.makeText(context, "-----------没有网路", Toast.LENGTH_SHORT).show();
+                        Log.e("------------没有网络", "没有网络");
+                    }
+                } } }
     }
 
 }
