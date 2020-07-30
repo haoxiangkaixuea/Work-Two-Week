@@ -228,12 +228,23 @@ PendingIntent pi = PendingIntent.getActivity(this, 0, intentnotice, 0);
 
  Notification（系统消息通知）
  在消息通知的时候，我们经常用到两个控件Notification和Toast。特别是重要的和需要长时间显示的信息，用Notification最合适不过了。他可以在顶部显示一个图标以标示有了新的通知，当我们拉下通知栏的时候，可以看到详细的通知内容。
+ 
+ 实现通知的点击效果，使用PendingIntent来启动一个通知活动
+ 
+Intent intentnotice = new Intent(this, NotificationActivity.class);
+
+PendingIntent pi = PendingIntent.getActivity(this, 0, intentnotice, 0);
 
 创建通知首先要创建一个NotificationManager来对通知进行管理，通过getSystemService获取到，
+
 getSystemService里面需要穿一个字符串，一般传Context.NOTIFICATION_SERVICE
+
 接下来要用Bulider来构造Notification对象，这里我们使用NotificationCompat类来构造创建Notification对象确保我们的程序字啊所有android系统版本都能运行
+
 使用提供的api来完成这个通知，一般有通知的标题setContentTitle，通知的内容setContentText,还可以通过style设置大文本，图片，发出通知的时间setWhen，通知的小标题setSmallIcon，
+
 通知点开后的大标题setLargeIcon，启动通知活动setContentIntent，设置取消通知etAutoCancel，设置通知的重要程度，setPriority
+
 最后让通知显示出来，manager.notify(1, notification);
 
 
