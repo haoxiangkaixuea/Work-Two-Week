@@ -2,14 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="cn.edu.scujcc.worktwoweek">
-    <!--网络权限-->
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <!--开机权限-->
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    <!--  服务通知权限  -->
+    <!-- 网络权限 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- 开机权限 -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" /> <!-- 服务通知权限 -->
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
-    <permission android:name="wma.permission.broadcast"/>
+    <permission android:name="wma.permission.broadcast" />
 
     <application
         android:allowBackup="true"
@@ -18,7 +16,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <!--     静态注册   -->
+        <activity android:name=".NotificationActivity"></activity>
+        <!-- 静态注册 -->
         <receiver
             android:name=".BootCompletReceiver"
             android:enabled="true"
@@ -26,8 +25,7 @@
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
-        </receiver>
-        <!--   标准广播     -->
+        </receiver> <!-- 标准广播 -->
         <receiver
             android:name=".MyBroaodcastReceiver"
             android:enabled="true"
@@ -36,8 +34,7 @@
             <intent-filter>
                 <action android:name="com.example.broadcasttest.MY_BROADCAST" />
             </intent-filter>
-        </receiver>
-        <!--   有序广播-->
+        </receiver> <!-- 有序广播 -->
         <receiver
             android:name=".AnotherBroadcastReceiver"
             android:enabled="true"
@@ -51,7 +48,7 @@
             android:name=".MyService"
             android:enabled="true"
             android:exported="true" />
-        <service android:name=".MyIntentService"></service>
+        <service android:name=".MyIntentService" />
 
         <activity android:name=".MainActivity">
             <intent-filter>

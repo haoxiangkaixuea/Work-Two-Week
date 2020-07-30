@@ -1,17 +1,22 @@
 package cn.edu.scujcc.worktwoweek;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.app.IntentService;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
+import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
 import android.net.Network;
 import android.net.NetworkCapabilities;
@@ -29,7 +34,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button mStart, mStop;
     private Button bindService, onBindService;
     private Button startIntentSerice;
-    private Button sendStandardBroadcast,sendOrderBroadcast;
+    private Button sendStandardBroadcast, sendOrderBroadcast;
+    private Button sendNotica;
     private MyService myService;
     private MyService.DownLoadBinder downLoadBinder;
     public static final String TAG = "Service";
@@ -103,16 +109,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //标准广播
         sendStandardBroadcast = findViewById(R.id.send_broadcast);
         sendStandardBroadcast.setOnClickListener(v -> {
-            Intent intent = new Intent("com.example.broadcasttest.MY_BROADCAST");
-             sendBroadcast(intent);
+            Intent intentstander = new Intent("com.example.broadcasttest.MY_BROADCAST");
+            sendBroadcast(intentstander);
         });
         //有序广播
-        sendOrderBroadcast=findViewById(R.id.send_orderbroadcast);
+        sendOrderBroadcast = findViewById(R.id.send_orderbroadcast);
         sendOrderBroadcast.setOnClickListener(v -> {
-            Intent intent = new Intent("com.example.broadcasttest.MY_BROADCAST");
-            sendOrderedBroadcast(intent, null);
+            Intent intentorder = new Intent("com.example.broadcasttest.MY_BROADCAST");
+            sendOrderedBroadcast(intentorder, null);
         });
 
+        //Notification通知
+        sendNotica = findViewById(R.id.send_notice);
+        sendNotica.setOnClickListener(this);
+        //方法二：取消通知
+        // NotificationManager manager=(NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+       // manager.cancel(1);
     }
 
     //bindService
@@ -180,13 +192,45 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Log.d("MainActivity", "Thread id is" + Thread.currentThread().getId());
                 Intent intentservice = new Intent(this, MyIntentService.class);
                 startService(intentservice);
+                break;
+
+            //notification
+            case R.id.send_notice:
+                //实现通知的点击效果，使用PendingIntent来启动一个通知活动
+                Intent intentnotice = new Intent(this, NotificationActivity.class);
+                PendingIntent pi = PendingIntent.getActivity(this, 0, intentnotice, 0);
+
+                //创建通知首先要创建一个NotificationManager来对通知进行管理，通过getSystemService获取到
+                //里面需要穿一个字符串，一般传Context.NOTIFICATION_SERVICE
+                NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+                //接下来要用Bulider来构造Notification对象，这里我们使用NotificationCompat类来构造创建Notification对象
+                //确保我们的程序字啊所有android系统版本都能运行
+                Notification notification = new NotificationCompat.Builder(this, "default")
+                        //通知的标题
+                        .setContentTitle("This is content Title")
+                        //通知的内容
+                        .setContentText("This is content text")
+                        //发出通知的时间
+                        .setWhen(System.currentTimeMillis())
+                        //通知的小标题
+                        .setSmallIcon(R.mipmap.ic_launcher_round)
+                        //通知点开后的大标题
+                        .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher))
+                        //启动通知活动
+                        .setContentIntent(pi)
+                        //设置取消通知，方法一
+                        .setAutoCancel(true)
+                        .build();
+                //notify让通知显示出来
+                manager.notify(1, notification);
+                break;
             default:
                 break;
 
         }
     }
 
-//动态添加碎片
+    //动态添加碎片
     private void replaceFragment(Fragment Fragment) {
         //获取碎片可以直接通过getSupportFragmentManager调用
         FragmentManager fragmentManager = getSupportFragmentManager();
