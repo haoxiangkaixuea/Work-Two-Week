@@ -124,7 +124,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         sendNotica.setOnClickListener(this);
         //方法二：取消通知
         // NotificationManager manager=(NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
-       // manager.cancel(1);
+        // manager.cancel(1);
     }
 
     //bindService
@@ -209,7 +209,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         //通知的标题
                         .setContentTitle("This is content Title")
                         //通知的内容
-                        .setContentText("This is content text")
+                        .setStyle(new NotificationCompat.BigTextStyle().bigText("method int androidx.appcompat.widget.DropDownListView.lookForSelectablePosition(int, boolean) " +
+                                "would have incorrectly overridden the package-private method in android.widget.ListView"))
+                        //显示大图
+                        .setStyle(new NotificationCompat.BigPictureStyle().bigPicture(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher)))
                         //发出通知的时间
                         .setWhen(System.currentTimeMillis())
                         //通知的小标题
@@ -220,6 +223,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         .setContentIntent(pi)
                         //设置取消通知，方法一
                         .setAutoCancel(true)
+                        //设置通知的重要程度
+                        .setPriority(NotificationCompat.PRIORITY_MAX)
+                        //通知是发出震动
+                        .setVibrate(new long[]{0, 1000, 1000, 1000})
                         .build();
                 //notify让通知显示出来
                 manager.notify(1, notification);
@@ -244,7 +251,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         fragmentTransaction.addToBackStack(null);
         //使用commit进行提交事务
         fragmentTransaction.commit();
-
     }
 
     //动态注册广播

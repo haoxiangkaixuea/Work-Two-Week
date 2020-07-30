@@ -50,7 +50,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:text="STARTSERVICE"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -68,7 +68,7 @@
         android:id="@+id/bind_service"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:text="Bind_Service"
         app:layout_constraintStart_toStartOf="@+id/startservice"
         app:layout_constraintTop_toBottomOf="@+id/startservice" />
@@ -86,7 +86,7 @@
         android:id="@+id/start_intent_service"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:text="StartIntentService"
         app:layout_constraintStart_toStartOf="@+id/bind_service"
         app:layout_constraintTop_toBottomOf="@+id/bind_service" />
@@ -95,7 +95,7 @@
         android:id="@+id/send_broadcast"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:text="StandardBroadcast"
         app:layout_constraintStart_toStartOf="@+id/start_intent_service"
         app:layout_constraintTop_toBottomOf="@+id/start_intent_service" />
@@ -104,9 +104,18 @@
         android:id="@+id/send_orderbroadcast"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:text="OraderBrodacast"
         app:layout_constraintStart_toStartOf="@+id/send_broadcast"
         app:layout_constraintTop_toBottomOf="@+id/send_broadcast" />
+
+    <Button
+        android:id="@+id/send_notice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="SENDNOTICE"
+        app:layout_constraintStart_toStartOf="@+id/send_orderbroadcast"
+        app:layout_constraintTop_toBottomOf="@+id/send_orderbroadcast" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
