@@ -65,7 +65,7 @@ public class MyService extends Service {
         Log.d("TAG", "onDestroy");
     }
 
-    //在DownLoadBinder里提供一个下载方法
+    //服务与活动之间的通信，在DownLoadBinder里提供一个下载方法
     public class DownLoadBinder extends Binder {
         //开始下载
         public void startDownload() {

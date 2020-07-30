@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button mStart, mStop;
     private Button bindService, onBindService;
     private Button startIntentSerice;
-    private Button sendBroadcast;
+    private Button sendStandardBroadcast,sendOrderBroadcast;
     private MyService myService;
     private MyService.DownLoadBinder downLoadBinder;
     public static final String TAG = "Service";
@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //Fragment
+        //给左侧碎片添加一个点击实例，点击左侧的按钮就会把右侧碎片替换为新的碎片
         mLeft = findViewById(R.id.left);
         mLeft.setOnClickListener(this);
         replaceFragment(new RightFragment());
@@ -101,19 +101,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //实现了监听网路变化的功能
 
         //标准广播
-        sendBroadcast=findViewById(R.id.send_broadcast);
-        sendBroadcast.setOnClickListener(v->{
-            Intent intent=new Intent("com.example.broadcasttest.MY_BROADCAST");
-           // sendBroadcast(intent);
+        sendStandardBroadcast = findViewById(R.id.send_broadcast);
+        sendStandardBroadcast.setOnClickListener(v -> {
+            Intent intent = new Intent("com.example.broadcasttest.MY_BROADCAST");
+             sendBroadcast(intent);
 
-            //有序广播
-            sendOrderedBroadcast(intent,null);
+
         });
-
         //有序广播
+        sendOrderBroadcast=findViewById(R.id.send_orderbroadcast);
+        sendOrderBroadcast.setOnClickListener(v -> {
+            Intent intent = new Intent("com.example.broadcasttest.MY_BROADCAST");
+            sendOrderedBroadcast(intent, null);
+        });
 
     }
 
+    //bindService
+    //创建ServiceConnection匿名类（匿名内部类只能使用一次，它通常用来简化代码编写，
+    // 但使用匿名内部类还有个前提条件：必须继承一个父类或实现一个接口）
+    //重写onServiceDisconnected（解绑服务时调用），onServiceConnected（绑定服务时调用）方法，、
+    //向下转型的得到DownLoadBinder实例，然后调用DownLoadBinder中的两个方法，
     private ServiceConnection connection = new ServiceConnection() {
 
         @Override
@@ -135,11 +143,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onDestroy() {
         Log.d("TAG", "onDestroy");
         super.onDestroy();
+
         //动态注册的广播接收器在最后一定要在onDestroy中取消注册,调用unbindService方法取消注册
         unregisterReceiver(networkChangeRecevier);
+        //解绑服务
         //unbindService(connection);
     }
-
 
     @Override
     public void onClick(View view) {
@@ -179,7 +188,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-
+//动态添加碎片
     private void replaceFragment(Fragment Fragment) {
         //获取碎片可以直接通过getSupportFragmentManager调用
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -190,7 +199,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //通过replace来获取待替换的碎片id和实例
         fragmentTransaction.replace(R.id.right_layout, Fragment);
         //按下back不会直接退出程序，而是建回到上一个碎片
-        fragmentManager.addOnBackStackChangedListener(null);
+        fragmentTransaction.addToBackStack(null);
         //使用commit进行提交事务
         fragmentTransaction.commit();
 
@@ -218,7 +227,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         Toast.makeText(context, "-----------没有网路", Toast.LENGTH_SHORT).show();
                         Log.e("------------没有网络", "没有网络");
                     }
-                } } }
+                }
+            }
+        }
     }
 
 }

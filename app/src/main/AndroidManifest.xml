@@ -27,7 +27,8 @@
         <receiver
             android:name=".MyBroaodcastReceiver"
             android:enabled="true"
-            android:exported="true">
+            android:exported="true"
+            android:priority="100">
             <intent-filter>
                 <action android:name="com.example.broadcasttest.MY_BROADCAST" />
             </intent-filter>
@@ -37,7 +38,7 @@
             android:name=".AnotherBroadcastReceiver"
             android:enabled="true"
             android:exported="true">
-            <intent-filter android:priority="100">
+            <intent-filter>
                 <!--  设置广播优先级-->
                 <action android:name="com.example.broadcasttest.MY_BROADCAST" />
             </intent-filter>
