@@ -221,36 +221,40 @@ Broadcast
 
 只需要创建一个BootCompletReceiver类继承自BroadcastRecevie，然后写一条Toast消息。
 
-//实现通知的点击效果，使用PendingIntent来启动一个通知活动
+实现通知的点击效果，使用PendingIntent来启动一个通知活动
 Intent intentnotice = new Intent(this, NotificationActivity.class);
 PendingIntent pi = PendingIntent.getActivity(this, 0, intentnotice, 0);
 
-//创建通知首先要创建一个NotificationManager来对通知进行管理，通过getSystemService获取到
-//里面需要穿一个字符串，一般传Context.NOTIFICATION_SERVICE
+
+ Notification（系统消息通知）
+ 在消息通知的时候，我们经常用到两个控件Notification和Toast。特别是重要的和需要长时间显示的信息，用Notification最合适不过了。他可以在顶部显示一个图标以标示有了新的通知，当我们拉下通知栏的时候，可以看到详细的通知内容。
+
+创建通知首先要创建一个NotificationManager来对通知进行管理，通过getSystemService获取到
+里面需要穿一个字符串，一般传Context.NOTIFICATION_SERVICE
 NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-//接下来要用Bulider来构造Notification对象，这里我们使用NotificationCompat类来构造创建Notification对象
-//确保我们的程序字啊所有android系统版本都能运行
+接下来要用Bulider来构造Notification对象，这里我们使用NotificationCompat类来构造创建Notification对象
+确保我们的程序字啊所有android系统版本都能运行
 Notification notification = new NotificationCompat.Builder(this, "default")
-        //通知的标题
+        通知的标题
         .setContentTitle("This is content Title")
-        //通知的内容
-        .setStyle(new NotificationCompat.BigTextStyle().bigText())
-        //显示大图
-        .setStyle(new NotificationCompat.BigPictureStyle().bigPicture(BitmapFactory.decodeResource(getResources(),R.mipmap.ic_launcher)))
-        //发出通知的时间
+        通知的内容
+        .setStyle(new NotificationCompat.BigTextStyle().bigText("method int androidx.appcompat.widget.DropDownListView.lookForSelectablePosition(int, boolean) would have incorrectly overridden the package-private method in android.widget.ListView"))
+        显示大图
+        .setStyle(new NotificationCompat.BigPictureStyle().bigPicture(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher)))
+        发出通知的时间
         .setWhen(System.currentTimeMillis())
-        //通知的小标题
+        通知的小标题
         .setSmallIcon(R.mipmap.ic_launcher_round)
-        //通知点开后的大标题
+        通知点开后的大标题
         .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher))
-        //启动通知活动
+        启动通知活动
         .setContentIntent(pi)
-        //设置取消通知，方法一
+        设置取消通知，方法一
         .setAutoCancel(true)
-        //设置通知的重要程度
+        设置通知的重要程度
         .setPriority(NotificationCompat.PRIORITY_MAX)
-        //通知是发出震动
-        .setVibrate(new long[] {0,1000,1000,1000})
+        通知是发出震动
+        .setVibrate(new long[]{0, 1000, 1000, 1000})
         .build();
-//notify让通知显示出来
+notify让通知显示出来
 manager.notify(1, notification);
