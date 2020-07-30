@@ -75,8 +75,8 @@
 
     <Button
         android:id="@+id/onbind_service"
-        android:layout_width="134dp"
-        android:layout_height="35dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:text="Onbind_Service"
         app:layout_constraintStart_toEndOf="@+id/bind_service"
@@ -104,9 +104,9 @@
         android:id="@+id/send_orderbroadcast"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
         android:text="OraderBrodacast"
-        app:layout_constraintStart_toEndOf="@+id/send_broadcast"
-        app:layout_constraintTop_toTopOf="@+id/send_broadcast" />
+        app:layout_constraintStart_toStartOf="@+id/send_broadcast"
+        app:layout_constraintTop_toBottomOf="@+id/send_broadcast" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

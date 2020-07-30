@@ -105,8 +105,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         sendStandardBroadcast.setOnClickListener(v -> {
             Intent intent = new Intent("com.example.broadcasttest.MY_BROADCAST");
              sendBroadcast(intent);
-
-
         });
         //有序广播
         sendOrderBroadcast=findViewById(R.id.send_orderbroadcast);
