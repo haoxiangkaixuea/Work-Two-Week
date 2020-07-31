@@ -79,6 +79,7 @@
 
 ![image-20200730092936676](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20200730092936676.png)
 
+
 Fragment与Activity之间的通信
 
 在新闻程序中，有A标题和B内容两个碎片，当用户选择了A中的标题1，这时碎片就要告诉活动，活动再告诉B，然后B显示出相应的内容1。这样可以增加碎片的可重用性。
@@ -87,9 +88,22 @@ Fragment------>Activity
 
 在Fragment内部定义一个接口，再让和Fragment相关的Activity实现这个接口，然后在碎片中的onAttach方法中判断是否实现了接口
 
+在碎片中调用活动：为了方便碎片和活动之间进行通信，FragmentManager提供了一个类似于findViewById()的方法，
+MainActivity activity = (MainActivity)getActivity();
+
 Activity----->Fragment
 
 在Activity中创建Bundle包，并调用Fragment中的setArguments(Bundle bundle)方法。
+
+//在活动中调用碎片的方法：
+RightFragment rightFragment = (RightFragment)getFragmentManager().
+                findFragmentById(R.id.right_fragment);
+
+Fragment---->Fragment
+
+碎片通信其他碎片：（首先获取与当前碎片关联的活动，再通过这个活动获取另一个碎片的实例
+ LeftFragment leftFragment = (LeftFragment)activity.getFragmentManager().
+                findFragmentById(R.id.left_fragment);
 
 
 
