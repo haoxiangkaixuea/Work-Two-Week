@@ -5,18 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
+    android:background="@drawable/backimg"
     tools:context=".MainActivity">
-
-<!--    <Button-->
-<!--        android:id="@+id/button2"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="4dp"-->
-<!--        android:text="Button"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.535"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent" />-->
 
 <!--        <fragment-->
 <!--        android:id="@+id/right_fragment"-->
@@ -46,23 +36,25 @@
         app:layout_constraintStart_toEndOf="@+id/left_fragment"></FrameLayout>
 
     <Button
-        android:id="@+id/startservice"
+        android:id="@+id/startserivce"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="STARTSERVICE"
+        android:textColor="#EFA002"
+        android:textStyle="normal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/stopservice"
+        android:id="@+id/stopserivce"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:text="STOPSERVICE"
-        app:layout_constraintStart_toEndOf="@+id/startservice"
-        app:layout_constraintTop_toTopOf="@+id/startservice" />
+        app:layout_constraintStart_toEndOf="@+id/startserivce"
+        app:layout_constraintTop_toTopOf="@+id/startserivce" />
 
     <Button
         android:id="@+id/bind_service"
@@ -70,8 +62,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Bind_Service"
-        app:layout_constraintStart_toStartOf="@+id/startservice"
-        app:layout_constraintTop_toBottomOf="@+id/startservice" />
+        app:layout_constraintStart_toStartOf="@+id/startserivce"
+        app:layout_constraintTop_toBottomOf="@+id/startserivce" />
 
     <Button
         android:id="@+id/onbind_service"
