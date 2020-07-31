@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         sendStandardBroadcast.setOnClickListener(v -> {
             Intent intentStander = new Intent("com.example.broadcasttest.MY_BROADCAST");
             intentStander.setComponent(new ComponentName("cn.edu.scujcc.worktwoweek",
-                    "cn.edu.scujcc.worktwoweek.MyBroaodcastReceiver"));
+                    "cn.edu.scujcc.worktwoweek.MyBroadcastReceiver"));
             sendBroadcast(intentStander);
         });
         //有序广播
