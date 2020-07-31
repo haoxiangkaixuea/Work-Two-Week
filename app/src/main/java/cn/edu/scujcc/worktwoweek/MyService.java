@@ -19,7 +19,6 @@ import androidx.core.app.NotificationCompat;
  */
 public class MyService extends Service {
     public static final String TAG = "MyService";
-
     private DownLoadBinder mBinder = new DownLoadBinder();
 
     public MyService() {

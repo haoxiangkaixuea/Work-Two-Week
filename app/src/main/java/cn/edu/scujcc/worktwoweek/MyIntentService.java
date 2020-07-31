@@ -15,7 +15,6 @@ public class MyIntentService extends IntentService {
     public MyIntentService() {
         super("MyIntentService");//调用父类的有参构造函数
     }
-
     @Override
     protected void onHandleIntent(@Nullable Intent intent) {
         //打印当前线程的Id

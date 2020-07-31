@@ -39,14 +39,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button mLeft, changButton;
     private Button mStart, mStop;
     private Button bindService, onBindService;
-    private Button startIntentSerice;
+    private Button startIntentService;
     private Button sendStandardBroadcast, sendOrderBroadcast;
     private Button sendNotice;
     private MyService myService;
     private MyService.DownLoadBinder downLoadBinder;
     private IntentFilter intentFilter;
-    private NetworkChangeRecevier networkChangeRecevier;
-
+    private NetworkChangeReceiver networkChangeRecevier;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,21 +72,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         onBindService.setOnClickListener(this);
 
         //IntentService
-        startIntentSerice = findViewById(R.id.start_intent_service);
-        startIntentSerice.setOnClickListener(this);
-
-
+        startIntentService = findViewById(R.id.start_intent_service);
+        startIntentService.setOnClickListener(this);
+        
         //动态注册广播
         intentFilter = new IntentFilter();
         //当网路发生变化是，系统会发出下面的广播，我们接收器要监听什么广播，就添加什么action
         intentFilter.addAction("android.net.conn.CONNECTIVITY_CHANGE");
-        //创建NetworkChangeRecevier实例
-        networkChangeRecevier = new NetworkChangeRecevier();
+        //创建NetworkChangeReceiver实例
+        networkChangeRecevier = new NetworkChangeReceiver();
         //调用registerReceiver注册，把前面两个实例对象都传进去。
         registerReceiver(networkChangeRecevier, intentFilter);
         //最后NetworkChangeReceiver会接收到一条值为android.net.conn.CONNECTIVITY_CHANGE的广播
         //实现了监听网路变化的功能
-
 
         //标准广播
         sendStandardBroadcast = findViewById(R.id.send_broadcast);
@@ -129,8 +126,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             downLoadBinder.startDownload();
             downLoadBinder.seeProgress();
             //System.out.println("Service连接成功");
-            // 执行Service内部自己的方法
-            //myService.excute();
         }
     };
 
@@ -146,7 +141,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            //点击左侧按钮，把右侧right换成anotherright
+            //点击左侧按钮，把右侧right换成anotherRight
             case R.id.left:
                 replaceFragment(new AnotherRight());
                 break;
@@ -163,9 +158,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             //服务与活动之间的通信
             case R.id.bind_service:
-                Intent bindintent = new Intent(this, MyService.class);
+                Intent bindIntent = new Intent(this, MyService.class);
                 //绑定服务
-                bindService(bindintent, connection, BIND_AUTO_CREATE);
+                bindService(bindIntent, connection, BIND_AUTO_CREATE);
                 break;
             case R.id.onbind_service:
                 //解绑服务
@@ -175,8 +170,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             //IntentService
             case R.id.start_intent_service:
                 Log.d("MainActivity", "Thread id is" + Thread.currentThread().getId());
-                Intent intentservice = new Intent(this, MyIntentService.class);
-                startService(intentservice);
+                Intent intentService = new Intent(this, MyIntentService.class);
+                startService(intentService);
                 break;
 
             //notification
@@ -204,23 +199,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 // 设置通知出现时的震动（如果 android 设备支持的话）
                 mChannel.enableVibration(true);
                 mChannel.setVibrationPattern(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
-                //最后在notificationmanager中创建该通知渠道
+                //最后在notificationManager中创建该通知渠道
                 mNotificationManager.createNotificationChannel(mChannel);
                 mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
                 // 为该通知设置一个id
                 int notifyId = 1;
                 // 通知渠道的id
-                String channalId = "my_channel_01";
+                String chandalId = "my_channel_01";
                 // Create a notification and set the notification channel.
                 // 发布通知
                 //实现通知的点击效果，使用PendingIntent来启动一个通知活动
-                Intent intentnotice = new Intent(this, NotificationActivity.class);
-                PendingIntent pi = PendingIntent.getActivity(this, 0, intentnotice, 0);
+                Intent intentNotice = new Intent(this, NotificationActivity.class);
+                PendingIntent pi = PendingIntent.getActivity(this, 0, intentNotice, 0);
 
                 //创建通知首先要创建一个NotificationManager来对通知进行管理，通过getSystemService获取到
                 //里面需要穿一个字符串，一般传Context.NOTIFICATION_SERVICE
                 NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-                //接下来要用Bulider来构造Notification对象，这里我们使用NotificationCompat类来构造创建Notification对象
+                //接下来要用Builder来构造Notification对象，这里我们使用NotificationCompat类来构造创建Notification对象
                 //确保我们的程序字啊所有android系统版本都能运行
                 Notification notification = new NotificationCompat.Builder(this, "default")
                         //通知的标题
@@ -245,7 +240,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         .setAutoCancel(true)
                         //设置通知的重要程度
                         .setPriority(NotificationCompat.PRIORITY_MAX)
-                        .setChannelId(channalId)
+                        .setChannelId(chandalId)
                         //通知是发出震动
                         .setVibrate(new long[]{0, 1000, 1000, 1000})
                         .build();
@@ -273,7 +268,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     //动态注册广播
-    public class NetworkChangeRecevier extends BroadcastReceiver {
+    public class NetworkChangeReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
             ConnectivityManager connectivity = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);

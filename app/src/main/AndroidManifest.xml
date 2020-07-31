@@ -18,7 +18,7 @@
         <activity android:name=".LocalBroadcast"></activity>
         <activity android:name=".NotificationActivity" /> <!-- 静态注册 -->
         <receiver
-            android:name=".BootCompletReceiver"
+            android:name=".BootCompleteReceiver"
             android:enabled="true"
             android:exported="true">
             <intent-filter>
