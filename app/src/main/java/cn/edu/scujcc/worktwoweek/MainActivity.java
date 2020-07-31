@@ -1,13 +1,8 @@
 package cn.edu.scujcc.worktwoweek;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.NotificationCompat;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-
-import android.app.IntentService;
 import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationChannelGroup;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
@@ -17,10 +12,10 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.Network;
 import android.net.NetworkCapabilities;
-import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
@@ -29,7 +24,18 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
+/**
+ * @author Administrator
+ */
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+    public static final int SEND_NOTICE = 1;
+    public static final String TAG = "Service";
     private Button mLeft, changButton;
     private Button mStart, mStop;
     private Button bindService, onBindService;
@@ -38,10 +44,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button sendNotica;
     private MyService myService;
     private MyService.DownLoadBinder downLoadBinder;
-    public static final String TAG = "Service";
     private IntentFilter intentFilter;
     private NetworkChangeRecevier networkChangeRecevier;
-    public static final int SEND_NOTICE = 1;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +76,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         startIntentSerice = findViewById(R.id.start_intent_service);
         startIntentSerice.setOnClickListener(this);
 
+
         //动态注册广播
         intentFilter = new IntentFilter();
         //当网路发生变化是，系统会发出下面的广播，我们接收器要监听什么广播，就添加什么action
@@ -79,20 +85,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         networkChangeRecevier = new NetworkChangeRecevier();
         //调用registerReceiver注册，把前面两个实例对象都传进去。
         registerReceiver(networkChangeRecevier, intentFilter);
-        //最后NetworkChangeRecevier会接收到一条值为android.net.conn.CONNECTIVITY_CHANGE的广播
+        //最后NetworkChangeReceiver会接收到一条值为android.net.conn.CONNECTIVITY_CHANGE的广播
         //实现了监听网路变化的功能
+
 
         //标准广播
         sendStandardBroadcast = findViewById(R.id.send_broadcast);
         sendStandardBroadcast.setOnClickListener(v -> {
-            Intent intentstander = new Intent("com.example.broadcasttest.MY_BROADCAST");
-            sendBroadcast(intentstander);
+            Intent intentStander = new Intent("com.example.broadcasttest.MY_BROADCAST");
+            intentStander.setComponent(new ComponentName("cn.edu.scujcc.worktwoweek",
+                    "cn.edu.scujcc.worktwoweek.MyBroaodcastReceiver"));
+            sendBroadcast(intentStander);
         });
         //有序广播
         sendOrderBroadcast = findViewById(R.id.send_orderbroadcast);
         sendOrderBroadcast.setOnClickListener(v -> {
-            Intent intentorder = new Intent("com.example.broadcasttest.MY_BROADCAST");
-            //sendOrderedBroadcast(intentorder, null);
+            Intent intentOrder = new Intent("com.example.broadcasttest.MY_BROADCAST");
+            //sendOrderedBroadcast(intentOrder, null);
         });
 
         //Notification通知
@@ -132,8 +141,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         //动态注册的广播接收器在最后一定要在onDestroy中取消注册,调用unbindService方法取消注册
         unregisterReceiver(networkChangeRecevier);
-        //解绑服务
-        unbindService(connection);
     }
 
     @Override
@@ -157,10 +164,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             //服务与活动之间的通信
             case R.id.bind_service:
                 Intent bindintent = new Intent(this, MyService.class);
-                bindService(bindintent, connection, BIND_AUTO_CREATE);//绑定服务
+                //绑定服务
+                bindService(bindintent, connection, BIND_AUTO_CREATE);
                 break;
             case R.id.onbind_service:
-                unbindService(connection);//解绑服务
+                //解绑服务
+                unbindService(connection);
                 break;
 
             //IntentService
@@ -172,6 +181,38 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             //notification
             case R.id.send_notice:
+                // 通知渠道组的id.
+                String group = "my_group_01";
+                // 用户可见的通知渠道组名称.
+                CharSequence name = getString(R.string.group_name);
+                NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+                mNotificationManager.createNotificationChannelGroup(new NotificationChannelGroup(group, name));
+                mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+                // 通知渠道的id
+                String id = "my_channel_01";
+                // 用户可以看到的通知渠道的名字.
+                CharSequence name1 = getString(R.string.channel_name);
+                // 用户可以看到的通知渠道的描述
+                String description = getString(R.string.channel_description);
+                int importance = NotificationManager.IMPORTANCE_HIGH;
+                NotificationChannel mChannel = new NotificationChannel(id, name1, importance);
+                // 配置通知渠道的属性
+                mChannel.setDescription(description);
+                // 设置通知出现时的闪灯（如果 android 设备支持的话）
+                mChannel.enableLights(true);
+                mChannel.setLightColor(Color.RED);
+                // 设置通知出现时的震动（如果 android 设备支持的话）
+                mChannel.enableVibration(true);
+                mChannel.setVibrationPattern(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
+                //最后在notificationmanager中创建该通知渠道
+                mNotificationManager.createNotificationChannel(mChannel);
+                mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+                // 为该通知设置一个id
+                int notifyId = 1;
+                // 通知渠道的id
+                String channalId = "my_channel_01";
+                // Create a notification and set the notification channel.
+                // 发布通知
                 //实现通知的点击效果，使用PendingIntent来启动一个通知活动
                 Intent intentnotice = new Intent(this, NotificationActivity.class);
                 PendingIntent pi = PendingIntent.getActivity(this, 0, intentnotice, 0);
@@ -185,11 +226,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         //通知的标题
                         .setContentTitle("This is content Title")
                         //通知的内容
-                        .setStyle(new NotificationCompat.BigTextStyle().bigText("method int androidx.appcompat.widget.DropDownListView.lookForSelectablePosition(int, boolean) " +
-                                "would have incorrectly overridden the package-private method in android.widget.ListView"))
+                        .setStyle(new NotificationCompat.BigTextStyle().bigText("method int androidx.appcompat.widget." +
+                                "DropDownListView.lookForSelectablePosition(int, boolean) \" +\n" +
+                                "  \"would have incorrectly overridden the package-private " +
+                                "method in android.widget.ListView<"))
                         //显示大图
-                       // .setStyle(new NotificationCompat.BigPictureStyle().bigPicture
-                                //(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher)))
+                        // .setStyle(new NotificationCompat.BigPictureStyle().bigPicture
+                        //(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher)))
                         //发出通知的时间
                         .setWhen(System.currentTimeMillis())
                         //通知的小标题
@@ -202,6 +245,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         .setAutoCancel(true)
                         //设置通知的重要程度
                         .setPriority(NotificationCompat.PRIORITY_MAX)
+                        .setChannelId(channalId)
                         //通知是发出震动
                         .setVibrate(new long[]{0, 1000, 1000, 1000})
                         .build();
@@ -210,20 +254,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             default:
                 break;
-
         }
     }
 
     //动态添加碎片
-    private void replaceFragment(Fragment Fragment) {
+    private void replaceFragment(Fragment fragment) {
         //获取碎片可以直接通过getSupportFragmentManager调用
         FragmentManager fragmentManager = getSupportFragmentManager();
         //通过beginTransaction()开启一个事务
         //获取碎片实例
-        //RightFragment right=(RightFragment)getSupportFragmentManager().findFragmentById(R.id.right_layout);
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         //通过replace来获取待替换的碎片id和实例
-        fragmentTransaction.replace(R.id.right_layout, Fragment);
+        fragmentTransaction.replace(R.id.right_layout, fragment);
         //按下back不会直接退出程序，而是建回到上一个碎片
         fragmentTransaction.addToBackStack(null);
         //使用commit进行提交事务
@@ -232,7 +274,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     //动态注册广播
     public class NetworkChangeRecevier extends BroadcastReceiver {
-
         @Override
         public void onReceive(Context context, Intent intent) {
             ConnectivityManager connectivity = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);

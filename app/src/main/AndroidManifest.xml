@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     package="cn.edu.scujcc.worktwoweek">
     <!-- 网络权限 -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- 开机权限 -->
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" /> <!-- 服务通知权限 -->
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-    <!--   震动权限-->
-    <uses-permission android:name="android.permission.VIBRATE" />
-    <!-- 发送广播权限-->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" /> <!-- 震动权限 -->
+    <uses-permission android:name="android.permission.VIBRATE" /> <!-- 发送广播权限 -->
     <permission android:name="wma.permission.broadcast" />
 
     <application
@@ -18,8 +15,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".NotificationActivity"></activity>
-        <!-- 静态注册 -->
+        <activity android:name=".LocalBroadcast"></activity>
+        <activity android:name=".NotificationActivity" /> <!-- 静态注册 -->
         <receiver
             android:name=".BootCompletReceiver"
             android:enabled="true"

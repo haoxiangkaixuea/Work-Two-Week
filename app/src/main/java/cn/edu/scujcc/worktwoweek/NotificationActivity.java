@@ -1,11 +1,11 @@
 package cn.edu.scujcc.worktwoweek;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 
-public class NotificationActivity extends AppCompatActivity {
+import androidx.appcompat.app.AppCompatActivity;
 
+public class NotificationActivity extends AppCompatActivity {
+    //通知的第二个界面
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
