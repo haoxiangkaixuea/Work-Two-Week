@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private MyService myService;
     private MyService.DownLoadBinder downLoadBinder;
     private IntentFilter intentFilter;
-    private NetworkChangeReceiver networkChangeRecevier;
+    private NetworkChangeReceiver networkChangeReceiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,15 +74,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //IntentService
         startIntentService = findViewById(R.id.start_intent_service);
         startIntentService.setOnClickListener(this);
-        
+
         //动态注册广播
         intentFilter = new IntentFilter();
         //当网路发生变化是，系统会发出下面的广播，我们接收器要监听什么广播，就添加什么action
         intentFilter.addAction("android.net.conn.CONNECTIVITY_CHANGE");
         //创建NetworkChangeReceiver实例
-        networkChangeRecevier = new NetworkChangeReceiver();
+        networkChangeReceiver = new NetworkChangeReceiver();
         //调用registerReceiver注册，把前面两个实例对象都传进去。
-        registerReceiver(networkChangeRecevier, intentFilter);
+        registerReceiver(networkChangeReceiver, intentFilter);
         //最后NetworkChangeReceiver会接收到一条值为android.net.conn.CONNECTIVITY_CHANGE的广播
         //实现了监听网路变化的功能
 
@@ -135,7 +135,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onDestroy();
 
         //动态注册的广播接收器在最后一定要在onDestroy中取消注册,调用unbindService方法取消注册
-        unregisterReceiver(networkChangeRecevier);
+        unregisterReceiver(networkChangeReceiver);
     }
 
     @Override

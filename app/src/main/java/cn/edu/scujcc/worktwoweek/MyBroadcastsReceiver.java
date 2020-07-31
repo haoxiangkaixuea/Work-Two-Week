@@ -12,8 +12,8 @@ import android.widget.Toast;
 public class MyBroadcastsReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
-        Toast.makeText(context, "received in standerMyBroaodcastReceiver", Toast.LENGTH_SHORT).show();
-        Log.d("stander", "standerMyBroaodcastReceiver");
+        Toast.makeText(context, "received in standerMyBroadcastReceiver", Toast.LENGTH_SHORT).show();
+        Log.d("stander", "standerMyBroadcastReceiver");
         //在onReceive中调用abortBroadcast方法表示截断这条广播，后面的广播接收器无法收到这条广播。
         //abortBroadcast();
     }
