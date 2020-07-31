@@ -11,6 +11,9 @@ import androidx.fragment.app.Fragment;
 
 import org.jetbrains.annotations.NotNull;
 
+/**
+ * @author Administrator
+ */
 public class RightFragment extends Fragment {
     public static final String TAG = "RightFragment";
 

@@ -26,7 +26,7 @@
             </intent-filter>
         </receiver> <!-- 标准广播 -->
         <receiver
-            android:name=".MyBroaodcastReceiver"
+            android:name=".MyBroadcastsReceiver"
             android:enabled="true"
             android:exported="true"
             android:priority="100">

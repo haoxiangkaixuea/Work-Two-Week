@@ -7,6 +7,9 @@ import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 
+/**
+ * @author Administrator
+ */
 public class AnotherRight extends Fragment {
 
     @Override

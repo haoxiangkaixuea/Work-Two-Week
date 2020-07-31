@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button bindService, onBindService;
     private Button startIntentSerice;
     private Button sendStandardBroadcast, sendOrderBroadcast;
-    private Button sendNotica;
+    private Button sendNotice;
     private MyService myService;
     private MyService.DownLoadBinder downLoadBinder;
     private IntentFilter intentFilter;
@@ -105,8 +105,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
 
         //Notification通知
-        sendNotica = findViewById(R.id.send_notice);
-        sendNotica.setOnClickListener(this);
+        sendNotice = findViewById(R.id.send_notice);
+        sendNotice.setOnClickListener(this);
         //方法二：取消通知
         // NotificationManager manager=(NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
         // manager.cancel(1);
