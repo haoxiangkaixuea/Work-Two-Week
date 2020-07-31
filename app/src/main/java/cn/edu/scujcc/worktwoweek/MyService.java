@@ -18,7 +18,7 @@ import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 
 public class MyService extends Service {
-    public static final String TAG = "Service";
+    public static final String TAG = "MyService";
 
     private DownLoadBinder mBinder = new DownLoadBinder();
 
@@ -29,20 +29,7 @@ public class MyService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-        Log.d("TAG", "onCreate");
-//        Intent intent = new Intent(this, MainActivity.class);
-//        PendingIntent pi = PendingIntent.getActivity(this, 0, intent, 0);
-//        //Notification notification=new NotificationCompat.Builder(this);
-//        Notification notification = new NotificationCompat.Builder(this, "default")
-//                .setContentTitle("This is content Title")
-//                .setContentText("This is content text")
-//                .setWhen(System.currentTimeMillis())
-//                .setSmallIcon(R.mipmap.ic_launcher_round)
-//                .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher_round))
-//                .setContentIntent(pi)
-//                .build();
-//        //调用startForeground让Myservice变成一个前台服务，在系统状态栏显示出来
-//        startForeground(1, notification);
+        Log.d(TAG, "onCreate");
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
             NotificationChannel notificationChannel = mNotificationManager.getNotificationChannel("MyService");
@@ -73,7 +60,7 @@ public class MyService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Log.d("TAG", "onStartCommand");
+        Log.d(TAG, "onStartCommand");
 
         return super.onStartCommand(intent, flags, startId);
     }
@@ -87,7 +74,7 @@ public class MyService extends Service {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Log.d("TAG", "onDestroy");
+        Log.d(TAG, "onDestroy");
         stopForeground(true);
 
     }
@@ -96,25 +83,13 @@ public class MyService extends Service {
     public class DownLoadBinder extends Binder {
         //开始下载
         public void startDownload() {
-            Log.d("TAG", "startDownload");
+            Log.d(TAG, "startDownload");
         }
 
         //查看下载进度
         public int seeProgress() {
-            Log.d("TAG", "seeProgress");
+            Log.d(TAG, "seeProgress");
             return 0;
         }
     }
-//
-//    public void excute() {
-//        System.out.println("通过Binder得到Service的引用来调用Service内部的方法");
-//    }
-//
-//    @Override
-//    public boolean onUnbind(Intent intent) {
-//        // 当调用者退出(即使没有调用unbindService)或者主动停止服务时会调用
-//        System.out.println("调用者退出了");
-//        return super.onUnbind(intent);
-//
-//    }
 }

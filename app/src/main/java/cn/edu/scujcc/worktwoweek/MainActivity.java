@@ -41,30 +41,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public static final String TAG = "Service";
     private IntentFilter intentFilter;
     private NetworkChangeRecevier networkChangeRecevier;
-//    private String fragmentName;
-//    private OnButtonClickedListener buttonClickedListener;
-//    /**
-//     * 定义一个Handler用于接收黄色碎片给Activity发出来的指令
-//     */
-//    public Handler handler = new Handler() {
-//        @Override
-//        public void handleMessage(Message msg) {
-//            super.handleMessage(msg);
-//            if (msg != null) {
-//                switch (msg.what) {
-//                    case 101:
-//                        /**
-//                         * 接收到黄色碎片发来的指令,Activity执行替换操作
-//                         */
-//                        fragmentName = LeftFragment.class.getName();
-//                        replaceFragment(R.id.left_fragment, fragmentName);
-//                        break;
-//                    default:
-//                        break;
-//                }
-//            }
-//        }
-//    };
+    public static final int SEND_NOTICE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,7 +93,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         sendOrderBroadcast = findViewById(R.id.send_orderbroadcast);
         sendOrderBroadcast.setOnClickListener(v -> {
             Intent intentorder = new Intent("com.example.broadcasttest.MY_BROADCAST");
-            sendOrderedBroadcast(intentorder, null);
+            //sendOrderedBroadcast(intentorder, null);
         });
 
         //Notification通知
@@ -157,7 +134,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //动态注册的广播接收器在最后一定要在onDestroy中取消注册,调用unbindService方法取消注册
         unregisterReceiver(networkChangeRecevier);
         //解绑服务
-        //unbindService(connection);
+        unbindService(connection);
     }
 
     @Override
@@ -212,7 +189,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         .setStyle(new NotificationCompat.BigTextStyle().bigText("method int androidx.appcompat.widget.DropDownListView.lookForSelectablePosition(int, boolean) " +
                                 "would have incorrectly overridden the package-private method in android.widget.ListView"))
                         //显示大图
-                        .setStyle(new NotificationCompat.BigPictureStyle().bigPicture(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher)))
+                       // .setStyle(new NotificationCompat.BigPictureStyle().bigPicture
+                                //(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher)))
                         //发出通知的时间
                         .setWhen(System.currentTimeMillis())
                         //通知的小标题
@@ -229,7 +207,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         .setVibrate(new long[]{0, 1000, 1000, 1000})
                         .build();
                 //notify让通知显示出来
-                manager.notify(1, notification);
+                manager.notify(SEND_NOTICE, notification);
                 break;
             default:
                 break;
