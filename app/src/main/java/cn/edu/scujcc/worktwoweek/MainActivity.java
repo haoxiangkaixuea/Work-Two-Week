@@ -61,7 +61,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // Intent startIntent = new Intent(this, MyService.class);
         // bindService(startIntent, connection, Context.BIND_AUTO_CREATE);
 
-
         //service与activity 之间的通信
         bindService = findViewById(R.id.bind_service);
         onBindService = findViewById(R.id.onbind_service);

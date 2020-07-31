@@ -53,8 +53,8 @@ public class MyService extends Service {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
             mBuilder.setContentTitle(getResources().getString(R.string.app_name));
         }
-//当id设置为0时，隐藏不显示通知，那么服务在60s后一样时会被杀死的。
-//要如何隐藏通知而服务不被杀死，这个还在学习中。
+       //当id设置为0时，隐藏不显示通知，那么服务在60s后一样时会被杀死的。
+      //要如何隐藏通知而服务不被杀死，这个还在学习中。
         startForeground(1, mBuilder.build());
     }
 
