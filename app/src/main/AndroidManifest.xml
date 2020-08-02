@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="cn.edu.scujcc.worktwoweek">
+
     <!-- 网络权限 -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- 开机权限 -->
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" /> <!-- 服务通知权限 -->
@@ -15,7 +16,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity2">
+        <service
+            android:name=".MyService2"
+            android:enabled="true"
+            android:exported="true"></service>
+
+        <activity android:name=".MainActivity3">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,6 +30,7 @@
             </intent-filter>
 
         </activity>
+        <activity android:name=".MainActivity2"></activity>
         <activity android:name=".NotificationActivity" /> <!-- 静态注册 -->
         <receiver
             android:name=".BootCompleteReceiver"
@@ -57,9 +64,7 @@
             android:exported="true" />
         <service android:name=".MyIntentService" />
 
-        <activity android:name=".MainActivity">
-
-        </activity>
+        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>
