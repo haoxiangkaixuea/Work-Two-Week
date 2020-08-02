@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
@@ -17,10 +18,15 @@ import org.jetbrains.annotations.NotNull;
 public class RightFragment extends Fragment {
     public static final String TAG = "RightFragment";
 
+    TextView tvShow;
+    LeftFragment.DataListener listener;
+
     @Override
     public void onAttach(@NotNull Context context) {
         super.onAttach(context);
         Log.d(TAG, "onAttach");
+
+        listener = (LeftFragment.DataListener) getActivity();
     }
 
     @Override
@@ -33,7 +39,14 @@ public class RightFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         Log.d(TAG, "onCreateView");
         View view = inflater.inflate(R.layout.activity_right_fragment, container, false);
+
+        tvShow = view.findViewById(R.id.right_fragment);
+
         return view;
+    }
+
+    public void showData(String data) {
+        tvShow.setText(data);
     }
 
     @Override
@@ -83,6 +96,4 @@ public class RightFragment extends Fragment {
         super.onDetach();
         Log.d(TAG, "onDetach");
     }
-
-
 }
