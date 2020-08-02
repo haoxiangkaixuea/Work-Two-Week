@@ -19,14 +19,14 @@ public class RightFragment extends Fragment {
     public static final String TAG = "RightFragment";
 
     TextView tvShow;
-    LeftFragment.DataListener listener;
+
 
     @Override
     public void onAttach(@NotNull Context context) {
         super.onAttach(context);
         Log.d(TAG, "onAttach");
 
-        listener = (LeftFragment.DataListener) getActivity();
+
     }
 
     @Override
