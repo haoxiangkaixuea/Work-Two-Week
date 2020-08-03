@@ -38,6 +38,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private MyService.DownLoadBinder downLoadBinder;
     private IntentFilter intentFilter;
     private NetworkChangeReceiver networkChangeReceiver;
+    //bindService
+    //创建ServiceConnection匿名类（匿名内部类只能使用一次，它通常用来简化代码编写，
+    // 但使用匿名内部类还有个前提条件：必须继承一个父类或实现一个接口）
+    //重写onServiceDisconnected（解绑服务时调用），onServiceConnected（绑定服务时调用）方法，、
+    //向下转型的得到DownLoadBinder实例，然后调用DownLoadBinder中的两个方法，
+    private ServiceConnection connection = new ServiceConnection() {
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+        }
+
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            downLoadBinder = ((MyService.DownLoadBinder) service);
+            downLoadBinder.startDownload();
+            downLoadBinder.seeProgress();
+            //System.out.println("Service连接成功");
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,26 +120,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // manager.cancel(1);
     }
 
-    //bindService
-    //创建ServiceConnection匿名类（匿名内部类只能使用一次，它通常用来简化代码编写，
-    // 但使用匿名内部类还有个前提条件：必须继承一个父类或实现一个接口）
-    //重写onServiceDisconnected（解绑服务时调用），onServiceConnected（绑定服务时调用）方法，、
-    //向下转型的得到DownLoadBinder实例，然后调用DownLoadBinder中的两个方法，
-    private ServiceConnection connection = new ServiceConnection() {
-
-        @Override
-        public void onServiceDisconnected(ComponentName name) {
-        }
-
-        @Override
-        public void onServiceConnected(ComponentName name, IBinder service) {
-            downLoadBinder = ((MyService.DownLoadBinder) service);
-            downLoadBinder.startDownload();
-            downLoadBinder.seeProgress();
-            //System.out.println("Service连接成功");
-        }
-    };
-
     @Override
     protected void onDestroy() {
         Log.d("TAG", "onDestroy");
@@ -168,10 +167,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             //notification
             case R.id.send_notice:
-
                 NoticeUtils noticeUtils = new NoticeUtils();
                 noticeUtils.SendNotice(this);
-                
                 break;
             default:
                 break;

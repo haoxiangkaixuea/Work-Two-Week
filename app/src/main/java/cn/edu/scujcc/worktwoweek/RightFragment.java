@@ -25,8 +25,6 @@ public class RightFragment extends Fragment {
     public void onAttach(@NotNull Context context) {
         super.onAttach(context);
         Log.d(TAG, "onAttach");
-
-
     }
 
     @Override

@@ -13,6 +13,6 @@ public class AnotherBroadcastReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         Toast.makeText(context, "received in orderAnotherBroadcastReceiver", Toast.LENGTH_SHORT).show();
-        Log.d("Another","AnotherBroadcastReceiver");
+        Log.d("Another", "AnotherBroadcastReceiver");
     }
 }

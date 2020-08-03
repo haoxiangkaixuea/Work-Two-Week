@@ -15,15 +15,16 @@ public class MyIntentService extends IntentService {
     public MyIntentService() {
         super("MyIntentService");//调用父类的有参构造函数
     }
+
     @Override
     protected void onHandleIntent(@Nullable Intent intent) {
         //打印当前线程的Id
-        Log.d("MyIntentService","Thread id is"+ Thread.currentThread().getId());
+        Log.d("MyIntentService", "Thread id is" + Thread.currentThread().getId());
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Log.d("MyIntentService","onDestroy");
+        Log.d("MyIntentService", "onDestroy");
     }
 }
