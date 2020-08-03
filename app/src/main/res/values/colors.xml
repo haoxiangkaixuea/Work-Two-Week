@@ -3,4 +3,9 @@
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
+    <color name="bule">#6495ED</color>
+    <color name="red">#FF0000</color>
+    <color name="green">#228B22</color>
+    <color name="orange">#FFA500</color>
+    <color name="skybule">#87CEFA</color>
 </resources>

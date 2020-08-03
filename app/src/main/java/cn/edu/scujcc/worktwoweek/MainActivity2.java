@@ -13,11 +13,11 @@ public class MainActivity2 extends AppCompatActivity {
     Button sendActivity;
     TextView textActivity;
     TextView textFragment;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
+
         //  Activity ----> Fragment
         textActivity = findViewById(R.id.text_activity);
         // 步骤1：获取FragmentManager

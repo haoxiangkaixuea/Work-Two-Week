@@ -4,20 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
     android:background="@drawable/backimg"
+    android:orientation="horizontal"
     tools:context=".MainActivity">
 
-<!--        <fragment-->
-<!--        android:id="@+id/right_fragment"-->
-<!--        android:name="cn.edu.scujcc.worktwoweek.RightFragment"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:layout_marginTop="80dp"-->
-<!--        android:layout_weight="3"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.0"-->
-<!--        app:layout_constraintStart_toStartOf="parent"/>-->
+    <!--        <fragment-->
+    <!--        android:id="@+id/right_fragment"-->
+    <!--        android:name="cn.edu.scujcc.worktwoweek.RightFragment"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="match_parent"-->
+    <!--        android:layout_marginTop="80dp"-->
+    <!--        android:layout_weight="3"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintHorizontal_bias="0.0"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"/>-->
 
     <fragment
         android:id="@+id/left_fragment"
@@ -42,9 +42,9 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="STARTSERVICE"
-        android:textColor="#EFA002"
-        android:textSize="14sp"
-        android:textStyle="normal"
+        android:background="@drawable/button_img"
+        android:focusable="true"
+        android:textColor="@color/red"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -54,7 +54,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:text="STOPSERVICE"
-        android:textColor="#EFA002"
+        android:background="@drawable/button_img"
+        android:focusable="true"
+        android:textColor="@color/red"
         app:layout_constraintStart_toEndOf="@+id/startserivce"
         app:layout_constraintTop_toTopOf="@+id/startserivce" />
 
@@ -63,8 +65,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:textColor="#EFA002"
         android:text="Bind_Service"
+        android:background="@drawable/button_img"
+        android:focusable="true"
+        android:textColor="@color/red"
         app:layout_constraintStart_toStartOf="@+id/startserivce"
         app:layout_constraintTop_toBottomOf="@+id/startserivce" />
 
@@ -73,7 +77,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:textColor="#EFA002"
+        android:background="@drawable/button_img"
+        android:focusable="true"
+        android:textColor="@color/red"
         android:text="Onbind_Service"
         app:layout_constraintStart_toEndOf="@+id/bind_service"
         app:layout_constraintTop_toTopOf="@+id/bind_service" />
@@ -83,8 +89,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:textColor="#EFA002"
         android:text="StartIntentService"
+        android:background="@drawable/button_img"
+        android:focusable="true"
+        android:textColor="@color/red"
         app:layout_constraintStart_toStartOf="@+id/bind_service"
         app:layout_constraintTop_toBottomOf="@+id/bind_service" />
 
@@ -93,8 +101,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:textColor="#EFA002"
         android:text="StandardBroadcast"
+        android:background="@drawable/button_img"
+        android:focusable="true"
+        android:textColor="@color/red"
         app:layout_constraintStart_toStartOf="@+id/start_intent_service"
         app:layout_constraintTop_toBottomOf="@+id/start_intent_service" />
 
@@ -103,8 +113,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:textColor="#EFA002"
         android:text="OraderBrodacast"
+        android:background="@drawable/button_img"
+        android:focusable="true"
+        android:textColor="@color/red"
         app:layout_constraintStart_toStartOf="@+id/send_broadcast"
         app:layout_constraintTop_toBottomOf="@+id/send_broadcast" />
 
@@ -113,8 +125,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:textColor="#EFA002"
-        android:text="SENDNOTICE"
+        android:background="@drawable/button_img"
+        android:focusable="true"
+        android:text="SEND_NOTICE"
+        android:textColor="@color/red"
         app:layout_constraintStart_toStartOf="@+id/send_orderbroadcast"
         app:layout_constraintTop_toBottomOf="@+id/send_orderbroadcast" />
 
