@@ -20,7 +20,6 @@ public class RightFragment extends Fragment {
 
     TextView tvShow;
 
-
     @Override
     public void onAttach(@NotNull Context context) {
         super.onAttach(context);

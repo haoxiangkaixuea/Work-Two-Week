@@ -27,14 +27,12 @@ import androidx.fragment.app.FragmentTransaction;
  */
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     public static final int SEND_NOTICE = 1;
-    public static final String TAG = "Service";
-    private Button mLeft, changButton;
+    private Button mLeft;
     private Button mStart, mStop;
     private Button bindService, onBindService;
     private Button startIntentService;
     private Button sendStandardBroadcast, sendOrderBroadcast;
     private Button sendNotice;
-    private MyService myService;
     private MyService.DownLoadBinder downLoadBinder;
     private IntentFilter intentFilter;
     private NetworkChangeReceiver networkChangeReceiver;

@@ -43,6 +43,7 @@
         android:layout_marginTop="16dp"
         android:text="STARTSERVICE"
         android:textColor="#EFA002"
+        android:textSize="14sp"
         android:textStyle="normal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -53,6 +54,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:text="STOPSERVICE"
+        android:textColor="#EFA002"
         app:layout_constraintStart_toEndOf="@+id/startserivce"
         app:layout_constraintTop_toTopOf="@+id/startserivce" />
 
@@ -61,6 +63,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:textColor="#EFA002"
         android:text="Bind_Service"
         app:layout_constraintStart_toStartOf="@+id/startserivce"
         app:layout_constraintTop_toBottomOf="@+id/startserivce" />
@@ -70,6 +73,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
+        android:textColor="#EFA002"
         android:text="Onbind_Service"
         app:layout_constraintStart_toEndOf="@+id/bind_service"
         app:layout_constraintTop_toTopOf="@+id/bind_service" />
@@ -79,6 +83,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:textColor="#EFA002"
         android:text="StartIntentService"
         app:layout_constraintStart_toStartOf="@+id/bind_service"
         app:layout_constraintTop_toBottomOf="@+id/bind_service" />
@@ -88,6 +93,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:textColor="#EFA002"
         android:text="StandardBroadcast"
         app:layout_constraintStart_toStartOf="@+id/start_intent_service"
         app:layout_constraintTop_toBottomOf="@+id/start_intent_service" />
@@ -97,6 +103,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:textColor="#EFA002"
         android:text="OraderBrodacast"
         app:layout_constraintStart_toStartOf="@+id/send_broadcast"
         app:layout_constraintTop_toBottomOf="@+id/send_broadcast" />
@@ -106,6 +113,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:textColor="#EFA002"
         android:text="SENDNOTICE"
         app:layout_constraintStart_toStartOf="@+id/send_orderbroadcast"
         app:layout_constraintTop_toBottomOf="@+id/send_orderbroadcast" />

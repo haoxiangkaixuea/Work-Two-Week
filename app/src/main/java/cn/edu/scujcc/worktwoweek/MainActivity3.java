@@ -15,11 +15,10 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity3 extends AppCompatActivity implements View.OnClickListener, ServiceConnection {
-    private static final String TAG = "xxxx";
     MyService2.MyBinder binder = null;
     private TextView textService;
     private boolean bind = false;
-    private int TransformData;
+    private int transformData;
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -34,7 +33,7 @@ public class MainActivity3 extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main3);
 
-        TransformData = 0;
+        transformData = 0;
         textService = findViewById(R.id.servicetext);
         Button bindBtn = findViewById(R.id.bind);
         Button unBindBtn = findViewById(R.id.onbind);
@@ -50,7 +49,7 @@ public class MainActivity3 extends AppCompatActivity implements View.OnClickList
         binder = (MyService2.MyBinder) service;
 
         //向Service传递数据 TransformData
-        binder.TransferData(TransformData);
+        binder.TransferData(transformData);
         //获取从Service传递的MyService对象
         MyService2 myService2 = binder.getService();
         //接口回调 监控Service中的数据变化 并在handler中更新UI
@@ -84,7 +83,7 @@ public class MainActivity3 extends AppCompatActivity implements View.OnClickList
             case R.id.onbind:
                 if (bind) {
                     //从Service中获取data数值
-                    TransformData = binder.getData();
+                    transformData = binder.getData();
                     unbindService(this);
                     bind = false;
                     Toast.makeText(this, "unBind Service Success!", Toast.LENGTH_SHORT).show();
@@ -93,7 +92,7 @@ public class MainActivity3 extends AppCompatActivity implements View.OnClickList
 
             case R.id.clear:
                 if (!bind) {
-                    TransformData = 0;
+                    transformData = 0;
                     textService.setText("0");
                 }
                 break;
