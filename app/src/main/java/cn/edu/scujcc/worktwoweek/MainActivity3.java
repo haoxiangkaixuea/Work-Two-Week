@@ -19,6 +19,13 @@ public class MainActivity3 extends AppCompatActivity implements View.OnClickList
     private TextView textService;
     private boolean bind = false;
     private int transformData;
+    //    private static class AppHandler extends Handler {
+//        //弱引用，在垃圾回收时，被回收
+//        WeakReference<Activity> activity;
+//
+//        AppHandler(Activity activity){
+//            this.activity=new WeakReference<Activity>(activity);
+//        }
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -100,4 +107,11 @@ public class MainActivity3 extends AppCompatActivity implements View.OnClickList
                 break;
         }
     }
+
+    @Override
+    protected void onDestroy() {
+        handler.removeCallbacksAndMessages(null);
+        super.onDestroy();
+    }
+
 }

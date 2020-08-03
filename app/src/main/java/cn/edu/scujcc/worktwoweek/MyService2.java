@@ -6,7 +6,6 @@ import android.os.Binder;
 import android.os.IBinder;
 
 public class MyService2 extends Service {
-    private static final String TAG = "xxxx";
     public int data = 0;
     private boolean connecting = false;
     private Callback callback;
