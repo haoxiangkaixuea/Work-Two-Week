@@ -1,8 +1,8 @@
-###  第二周
+#  第二周
 
-#### Fragment的使用
+##Fragment的使用
 
-###### 碎片的生命周期
+#### 碎片的生命周期
 
 和活动的生命周期差不多，有四个状态
 
@@ -14,7 +14,7 @@
 
 销毁：当活动被销毁时，与他相关的碎片也会被销毁，或者会通过调用FragmentTransation的remove和replace方法来将碎片从活动中移除，如果在事务提交之前就用OnBackStarck方法，碎片也会进入销毁状态。
 
-###### 额外的回调方法
+## 额外的回调方法
 
 ### 1.toAttach()
 
@@ -41,7 +41,7 @@
 当用户点击回退（碎片被添加到返回栈）或者碎片被替换或移除：onPause(),onStop(),onDestroyView(),onDestroy,onDetach().
 
 
-##### 动态添加碎片：
+## 动态添加碎片：
 
 1.创建待添加的碎片实例
 
@@ -57,7 +57,7 @@
 
 5.提交事务，调用commit()方法完成
 
-###### Fragment与Activity之间的通信
+## Fragment与Activity之间的通信
 
 在新闻程序中，有A标题和B内容两个碎片，当用户选择了A中的标题1，这时碎片就要告诉活动，活动再告诉B，然后B显示出相应的内容1。这样可以增加碎片的可重用性。
 
@@ -82,7 +82,7 @@ RightFragment rightFragment = (RightFragment)getFragmentManager().
  LeftFragment leftFragment = (LeftFragment)activity.getFragmentManager().
                 findFragmentById(R.id.left_fragment);
 
-###### service的启动方式
+## service的启动方式
 
 在用户打开其他的程序时，该程序依然会运行，简单来说就是可以一边听音乐一边看小说。
 
@@ -100,7 +100,7 @@ bindService用于绑定一个服务。这时会调用服务中的onBind方法，
 
 在活动里面创建ServiceConnection类，冲重写类里面的onServiceDisconnected和onServiceConnected方法，
 
-### 3、服务与活动之间的通信
+## 3、服务与活动之间的通信
 
 需要用到服务的onBind方法，调用方可以获取到onBind方法里返回的IBinder对象的实例，这样就可以与服务进行自由的通信
 
@@ -112,19 +112,19 @@ bindService用于绑定一个服务。这时会调用服务中的onBind方法，
 重写onServiceDisconnected（解绑服务时调用），onServiceConnected（绑定服务时调用）方法，、
 向下转型的得到DownLoadBinder实例，然后调用DownLoadBinder中的两个方法，
 
-### 4、前台服务（Intentservice）
+## 4、前台服务（Intentservice）
 
 前台服务于普通服务最大的区别就是前台服务在运行的时候就会有一个运行图标在系统的状态栏显示，下拉状态栏可以看到更加详细的信息，类似于通知，
 
 方法：构建类似于通知的对象，调用startForeground让Myservice变成一个前台服务，在系统状态栏显示出来
 
-### IntentService的使用
+## IntentService的使用
 
  为避免忘记创建子线程，或者忘记调用selfstop()方法，创建一个简单的异步的，会自动停止的服务，Android专门提供了一个IntentService类来解决这个问题
 
 方法：创建一个MyIntentService类继承自IntentService,重写里面的MyIntentService和onHandleIntent方法，
 
-###### Broadcast
+## Broadcast
 
 ### 1、广播的类型主要分为两种，有序广播和标准广播
 
