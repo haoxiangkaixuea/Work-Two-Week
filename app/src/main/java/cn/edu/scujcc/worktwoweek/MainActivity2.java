@@ -19,13 +19,13 @@ public class MainActivity2 extends AppCompatActivity {
         setContentView(R.layout.activity_main2);
 
         //  Activity ----> Fragment
-        textActivity = findViewById(R.id.text_activity);
+        textActivity = findViewById(R.id.receive_activity);
         // 步骤1：获取FragmentManager
         FragmentManager fragmentManager = getSupportFragmentManager();
         // 步骤2：获取FragmentTransaction
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         // 步骤3：创建需要添加的Fragment
-        final LeftFragment fragment = new LeftFragment();
+        final AnotherLeftFragment fragment = new AnotherLeftFragment();
         // 步骤4:创建Bundle对象
         // 作用:存储数据，并传递到Fragment中
         Bundle bundle = new Bundle();
@@ -39,14 +39,14 @@ public class MainActivity2 extends AppCompatActivity {
         fragmentTransaction.commit();
 
         //  Fragment ----> Activity
-        textFragment = findViewById(R.id.text_fragment);
-        sendActivity = findViewById(R.id.send_activity);
+        textFragment = findViewById(R.id.receive_fragment);
+        sendActivity = findViewById(R.id.receive_fragment_button);
         // 步骤1：获取FragmentManager
         FragmentManager manager = getSupportFragmentManager();
         // 步骤2：获取FragmentTransaction
         FragmentTransaction transaction = manager.beginTransaction();
         // 步骤3：创建需要添加的Fragment
-        final LeftFragment aFragment = new LeftFragment();
+        final AnotherLeftFragment aFragment = new AnotherLeftFragment();
         // 步骤4：动态添加fragment
         // 即将创建的fragment添加到Activity布局文件中定义的占位符中（FrameLayout）
         transaction.add(R.id.fragment_container, aFragment);
