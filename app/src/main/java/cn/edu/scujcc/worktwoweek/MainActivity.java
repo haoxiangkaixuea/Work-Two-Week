@@ -15,12 +15,15 @@ import android.os.IBinder;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 /**
  * @author Administrator
@@ -28,6 +31,9 @@ import androidx.fragment.app.FragmentTransaction;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     public static final String TAG = "MainActivity";
     public static final int SEND_NOTICE = 1;
+    public static final String ACTION = "com.iffiness.intensified.metrication";
+    private TextView tv;
+    private ProgressBar pb;
     private Button mLeft;
     private Button mStart, mStop;
     private Button bindService, unBindService;
@@ -37,6 +43,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private MyService.DownLoadBinder downLoadBinder;
     private IntentFilter intentFilter;
     private NetworkChangeReceiver networkChangeReceiver;
+    private LocalBroadcastManager mLocalBroadcastManager;
+    private MyBroadcastReceiver mMyBroadcastReceiver;
+
     /**
      * bindService
      * 创建ServiceConnection匿名类（匿名内部类只能使用一次，它通常用来简化代码编写，
@@ -62,6 +71,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         //给左侧碎片添加一个点击实例，点击左侧的按钮就会把右侧碎片替换为新的碎片
         mLeft = findViewById(R.id.left);
         mLeft.setOnClickListener(this);
@@ -83,8 +93,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         unBindService.setOnClickListener(this);
 
         //IntentService
+        tv = (TextView) findViewById(R.id.tv);
+        pb = (ProgressBar) findViewById(R.id.prb);
         startIntentService = findViewById(R.id.start_intent_service);
         startIntentService.setOnClickListener(this);
+        initBroadcastReceiver();
 
         //动态注册广播
         intentFilter = new IntentFilter();
@@ -118,6 +131,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onDestroy() {
         Log.d(TAG, "onDestroy");
         super.onDestroy();
+
+        if (mLocalBroadcastManager != null && mMyBroadcastReceiver != null) {
+            mLocalBroadcastManager.unregisterReceiver(mMyBroadcastReceiver);
+        }
 
         //动态注册的广播接收器在最后一定要在onDestroy中取消注册,调用unbindService方法取消注册
         unregisterReceiver(networkChangeReceiver);
@@ -155,7 +172,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             //IntentService
             case R.id.start_intent_service:
                 Log.d(TAG, "Thread id is" + Thread.currentThread().getId());
-                Intent intentService = new Intent(this, MyIntentService.class);
+                Intent intentService = new Intent(this, ProgressBar.class);
                 startService(intentService);
                 break;
 
@@ -188,6 +205,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         fragmentTransaction.commit();
     }
 
+    private void initBroadcastReceiver() {
+        if (mLocalBroadcastManager == null) {
+            mLocalBroadcastManager = LocalBroadcastManager.getInstance(this);
+        }
+        if (mMyBroadcastReceiver == null) {
+            mMyBroadcastReceiver = new MyBroadcastReceiver();
+        }
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(ACTION);
+        mLocalBroadcastManager.registerReceiver(mMyBroadcastReceiver, intentFilter);
+    }
+
     /**
      * 动态注册广播
      */
@@ -216,4 +245,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    public class MyBroadcastReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            //根据IntentService中的发送的广播来进行UI更新
+            if (intent.getAction().equals(ACTION)) {
+                int progress = intent.getIntExtra("progress", 0);
+                if (progress > 0 && progress < 100) {
+                    tv.setText("线程进行中");
+                } else if (progress >= 100) {
+                    tv.setText("线程结束");
+                }
+                pb.setProgress(progress);
+            }
+        }
+    }
 }

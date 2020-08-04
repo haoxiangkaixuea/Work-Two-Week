@@ -24,16 +24,14 @@ public class AnotherLeftFragment extends Fragment {
         bundle = this.getArguments();
 
         // 步骤2:获取某一值
-        message = bundle.getString("message");
+        // message = bundle.getString("message");
 
         // 步骤3:设置按钮,将设置的值显示出来
         receiveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 // 显示传递过来的值
                 receiveText.setText(message);
-
             }
         });
         return view;
