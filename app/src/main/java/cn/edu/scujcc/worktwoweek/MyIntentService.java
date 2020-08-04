@@ -132,7 +132,6 @@ public class MyIntentService extends IntentService {
     public int onStartCommand(Intent intent, int flags, int startId) {
         Log.i(TAG, "onStartCommand");
         return super.onStartCommand(intent, flags, startId);
-
     }
 
     @Override

@@ -9,6 +9,9 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
+/**
+ * @author Administrator
+ */
 public class AnotherLeftFragment extends Fragment {
     Button receiveButton;
     TextView receiveText;
