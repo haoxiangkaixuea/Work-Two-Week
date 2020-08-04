@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button mStart, mStop;
     private Button bindService, onBindService;
     private Button startIntentService;
-    private Button sendStandardBroadcast, sendOrderBroadcast;
+    private Button sendStandardBroadcast;
     private Button sendNotice;
     private MyService.DownLoadBinder downLoadBinder;
     private IntentFilter intentFilter;

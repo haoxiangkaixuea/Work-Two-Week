@@ -36,8 +36,6 @@ public class RightFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         Log.d(TAG, "onCreateView");
         View view = inflater.inflate(R.layout.activity_right_fragment, container, false);
-
-        tvShow = view.findViewById(R.id.right_fragment);
         return view;
     }
 
