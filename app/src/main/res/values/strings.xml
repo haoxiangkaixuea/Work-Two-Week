@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Work Two Week</string>
+    <string name="app_name">Work Two</string>
     <string name="group_name">yanglijun</string>
     <string name="channel_name">one news</string>
     <string name="channel_description">android.provider.Settings.Secure to android.provider.Settings.Global.</string>
