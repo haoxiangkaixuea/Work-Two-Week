@@ -12,39 +12,39 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginStart="80dp"
-        android:layout_marginBottom="40dp"
+        android:layout_marginTop="32dp"
         android:text="我是Activity"
         android:textSize="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/fragment_container"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="@+id/text_fragment"
+        app:layout_constraintTop_toBottomOf="@+id/text_fragment" />
 
     <TextView
         android:id="@+id/text_fragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
         android:text="等待Fragment发送消息"
         android:textSize="20dp"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/send_activity"
         app:layout_constraintTop_toBottomOf="@+id/send_activity" />
 
     <Button
         android:id="@+id/send_activity"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/text_activity"
         android:layout_centerInParent="true"
-        android:layout_marginStart="36dp"
-        android:layout_marginBottom="88dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
         android:background="@drawable/button_img"
         android:focusable="true"
         android:text="点击接收Fragment消息"
         android:textColor="@color/red"
         android:textSize="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/text_activity"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <FrameLayout
         android:id="@+id/fragment_container"

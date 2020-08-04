@@ -23,7 +23,16 @@
             android:exported="true" />
 
         <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".MainActivity3"
+            android:label="@string/activity3">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -31,26 +40,19 @@
             </intent-filter>
 
         </activity>
-
-        <activity android:name=".MainActivity3">
-
+        <activity
+            android:name=".MainActivity2"
+            android:label="@string/activity2">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
-        <activity android:name=".MainActivity2">
 
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        <!-- 静态注册 -->
+        <activity android:name=".NotificationActivity" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
-        </activity>
-        <activity android:name=".NotificationActivity" /> <!-- 静态注册 -->
         <receiver
             android:name=".BootCompleteReceiver"
             android:enabled="true"
@@ -58,7 +60,9 @@
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
-        </receiver> <!-- 标准广播 -->
+
+            <!-- 标准广播 -->
+        </receiver>
         <receiver
             android:name=".MyBroadcastsReceiver"
             android:enabled="true"
@@ -67,7 +71,9 @@
             <intent-filter>
                 <action android:name="com.example.broadcasttest.MY_BROADCAST" />
             </intent-filter>
-        </receiver> <!-- 有序广播 -->
+
+            <!-- 有序广播 -->
+        </receiver>
         <receiver
             android:name=".AnotherBroadcastReceiver"
             android:enabled="true"
