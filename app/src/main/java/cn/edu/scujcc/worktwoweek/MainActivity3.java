@@ -56,13 +56,10 @@ public class MainActivity3 extends AppCompatActivity implements View.OnClickList
         //获取从Service传递的MyService对象
         MyService2 myService2 = binder.getService();
         //接口回调 监控Service中的数据变化 并在handler中更新UI
-        myService2.setCallback(new MyService2.Callback() {
-            @Override
-            public void onDataChange(String data) {
-                Message msg = new Message();
-                msg.obj = data;
-                handler.sendMessage(msg);
-            }
+        myService2.setCallback(data -> {
+            Message msg = new Message();
+            msg.obj = data;
+            handler.sendMessage(msg);
         });
     }
 

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/back_img"
     tools:context=".MainActivity2">
 
     <TextView
@@ -37,7 +38,10 @@
         android:layout_centerInParent="true"
         android:layout_marginStart="36dp"
         android:layout_marginBottom="88dp"
+        android:background="@drawable/button_img"
+        android:focusable="true"
         android:text="点击接收Fragment消息"
+        android:textColor="@color/red"
         android:textSize="10dp"
         app:layout_constraintBottom_toTopOf="@+id/text_activity"
         app:layout_constraintStart_toStartOf="parent" />

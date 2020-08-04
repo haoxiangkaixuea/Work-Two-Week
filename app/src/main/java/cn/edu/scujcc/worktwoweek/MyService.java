@@ -45,7 +45,6 @@ public class MyService extends Service {
                 mNotificationManager.createNotificationChannel(channel);
             }
         }
-        int notifyId = (int) System.currentTimeMillis();
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this, "MyService");
         mBuilder.setSmallIcon(R.drawable.ic_launcher_background);
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
@@ -81,9 +80,8 @@ public class MyService extends Service {
         }
 
         //查看下载进度
-        public int seeProgress() {
+        public void seeProgress() {
             Log.d(TAG, "seeProgress");
-            return 0;
         }
     }
 }

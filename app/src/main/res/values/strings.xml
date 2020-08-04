@@ -3,6 +3,6 @@
     <string name="group_name">yanglijun</string>
     <string name="channel_name">one news</string>
     <string name="channel_description">android.provider.Settings.Secure to android.provider.Settings.Global.</string>
-    <string name="bigcontext">method int androidx.appcompat.widget.DropDownListView.lookForSelectablePosition(int, boolean) " +
+    <string name="big_context">method int androidx.appcompat.widget.DropDownListView.lookForSelectablePosition(int, boolean) " +
                                 "would have incorrectly overridden the package-private method in android.widget.ListView</string>
 </resources>
