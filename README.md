@@ -1,8 +1,8 @@
 #  第二周
 
-##Fragment的使用
+## Fragment的使用
 
-#### 碎片的生命周期
+### 碎片的生命周期
 
 和活动的生命周期差不多，有四个状态
 
@@ -14,7 +14,7 @@
 
 销毁：当活动被销毁时，与他相关的碎片也会被销毁，或者会通过调用FragmentTransation的remove和replace方法来将碎片从活动中移除，如果在事务提交之前就用OnBackStarck方法，碎片也会进入销毁状态。
 
-## 额外的回调方法
+### 额外的回调方法
 
 ### 1.toAttach()
 
@@ -41,7 +41,7 @@
 当用户点击回退（碎片被添加到返回栈）或者碎片被替换或移除：onPause(),onStop(),onDestroyView(),onDestroy,onDetach().
 
 
-## 动态添加碎片：
+### 动态添加碎片：
 
 1.创建待添加的碎片实例
 
@@ -146,7 +146,7 @@ bindService用于绑定一个服务。这时会调用服务中的onBind方法，
 
 最后使用Intent获取action,调用sendBroadcast发送广播。
 
-### 2、
+### 2、动态注册和静态注册
 
 ### 动态注册：
 
@@ -168,7 +168,7 @@ bindService用于绑定一个服务。这时会调用服务中的onBind方法，
 Intent intentnotice = new Intent(this, NotificationActivity.class);
 PendingIntent pi = PendingIntent.getActivity(this, 0, intentnotice, 0);
 
- ###### Notification（系统消息通知）
+ ## Notification（系统消息通知）
  在消息通知的时候，我们经常用到两个控件Notification和Toast。特别是重要的和需要长时间显示的信息，用Notification最合适不过了。他可以在顶部显示一个图标以标示有了新的通知，当我们拉下通知栏的时候，可以看到详细的通知内容。
  
  实现通知的点击效果，使用PendingIntent来启动一个通知活动
