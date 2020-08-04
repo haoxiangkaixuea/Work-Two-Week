@@ -10,7 +10,6 @@ import androidx.fragment.app.FragmentTransaction;
 
 public class MainActivity2 extends AppCompatActivity {
     Button sendActivity;
-    TextView textActivity;
     TextView textFragment;
 
     @Override
@@ -19,7 +18,6 @@ public class MainActivity2 extends AppCompatActivity {
         setContentView(R.layout.activity_main2);
 
         //  Activity ----> Fragment
-        textActivity = findViewById(R.id.receive_activity);
         // 步骤1：获取FragmentManager
         FragmentManager fragmentManager = getSupportFragmentManager();
         // 步骤2：获取FragmentTransaction
@@ -30,7 +28,7 @@ public class MainActivity2 extends AppCompatActivity {
         // 作用:存储数据，并传递到Fragment中
         Bundle bundle = new Bundle();
         // 步骤5:往bundle中添加数据
-        bundle.putString("message", "I love Google");
+        bundle.putString("message", "消息:我来自Activity");
         // 步骤6:把数据设置到Fragment中
         fragment.setArguments(bundle);
         // 步骤7：动态添加fragment
