@@ -12,23 +12,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
         android:text="我是fragment"
         android:textSize="20dp"
-        app:layout_constraintStart_toStartOf="@+id/receive_activity"
-        app:layout_constraintTop_toBottomOf="@+id/receive_activity" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/receive_activity_button" />
 
     <TextView
         android:id="@+id/receive_activity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
         android:text="等待Activity发送消息"
         android:textSize="20dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/receive_activity_button" />
+        app:layout_constraintStart_toStartOf="@+id/text_fragment"
+        app:layout_constraintTop_toBottomOf="@+id/text_fragment" />
 
     <Button
         android:id="@+id/receive_activity_button"
