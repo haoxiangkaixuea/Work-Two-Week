@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="cn.edu.scujcc.worktwoweek">
-
     <!-- 网络权限 -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- 开机权限 -->
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" /> <!-- 服务通知权限 -->
@@ -29,7 +28,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".MainActivity3"
             android:label="@string/activity3">
@@ -38,7 +36,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity
             android:name=".MainActivity2"
@@ -48,9 +45,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-        <!-- 静态注册 -->
+        </activity> <!-- 静态注册 -->
         <activity android:name=".NotificationActivity" />
 
         <receiver
@@ -88,6 +83,6 @@
             android:enabled="true"
             android:exported="true" />
         <service android:name=".MyIntentService" />
-
     </application>
+
 </manifest>

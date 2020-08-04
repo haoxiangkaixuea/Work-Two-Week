@@ -15,6 +15,9 @@ import androidx.core.app.NotificationCompat;
 
 import static cn.edu.scujcc.worktwoweek.MainActivity.SEND_NOTICE;
 
+/**
+ * @author Administrator
+ */
 public class NoticeUtils {
     public void sendNotice(Context context) {
 
@@ -24,6 +27,7 @@ public class NoticeUtils {
             // 用户可见的通知渠道组名称.
             CharSequence name = context.getString(R.string.group_name);
             NotificationManager mNotificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+            assert mNotificationManager != null;
             mNotificationManager.createNotificationChannelGroup(new NotificationChannelGroup(group, name));
             mNotificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
             // 通知渠道的id
@@ -43,6 +47,7 @@ public class NoticeUtils {
             mChannel.enableVibration(true);
             mChannel.setVibrationPattern(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
             //最后在notificationManager中创建该通知渠道
+            assert mNotificationManager != null;
             mNotificationManager.createNotificationChannel(mChannel);
             mNotificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
             // 为该通知设置一个id
@@ -86,6 +91,7 @@ public class NoticeUtils {
                     .setVibrate(new long[]{0, 1000, 1000, 1000})
                     .build();
             //notify让通知显示出来
+            assert manager != null;
             manager.notify(SEND_NOTICE, notification);
         } else {
             // Create a notification and set the notification channel.
@@ -126,6 +132,7 @@ public class NoticeUtils {
                     .setVibrate(new long[]{0, 1000, 1000, 1000})
                     .build();
             //notify让通知显示出来
+            assert manager != null;
             manager.notify(SEND_NOTICE, notification);
         }
     }

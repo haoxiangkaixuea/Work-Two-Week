@@ -37,11 +37,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private MyService.DownLoadBinder downLoadBinder;
     private IntentFilter intentFilter;
     private NetworkChangeReceiver networkChangeReceiver;
-    //bindService
-    //创建ServiceConnection匿名类（匿名内部类只能使用一次，它通常用来简化代码编写，
-    // 但使用匿名内部类还有个前提条件：必须继承一个父类或实现一个接口）
-    //重写onServiceDisconnected（解绑服务时调用），onServiceConnected（绑定服务时调用）方法，、
-    //向下转型的得到DownLoadBinder实例，然后调用DownLoadBinder中的两个方法，
+    /**
+     * bindService
+     * 创建ServiceConnection匿名类（匿名内部类只能使用一次，它通常用来简化代码编写，
+     * 但使用匿名内部类还有个前提条件：必须继承一个父类或实现一个接口）
+     * 重写onServiceDisconnected（解绑服务时调用），onServiceConnected（绑定服务时调用）方法，、
+     * 向下转型的得到DownLoadBinder实例，然后调用DownLoadBinder中的两个方法，
+     */
     private ServiceConnection connection = new ServiceConnection() {
 
         @Override
@@ -167,7 +169,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    //动态添加碎片
+    /**
+     * 动态添加碎片
+     *
+     * @param fragment 碎片实例
+     */
     private void replaceFragment(Fragment fragment) {
         //获取碎片可以直接通过getSupportFragmentManager调用
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -182,7 +188,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         fragmentTransaction.commit();
     }
 
-    //动态注册广播
+    /**
+     * 动态注册广播
+     */
     public class NetworkChangeReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
