@@ -53,11 +53,12 @@ public class MyService2 extends Service {
         connecting = false;
     }
 
-    /**
-     * Callback
-     * onDataChange
-     */
     public interface Callback {
+        /**
+         * onDataChange
+         *
+         * @param data
+         */
         void onDataChange(String data);
     }
 
