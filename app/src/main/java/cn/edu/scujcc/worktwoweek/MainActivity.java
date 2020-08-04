@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public static final int SEND_NOTICE = 1;
     private Button mLeft;
     private Button mStart, mStop;
-    private Button bindService, onBindService;
+    private Button bindService, unBindService;
     private Button startIntentService;
     private Button sendStandardBroadcast;
     private Button sendNotice;
@@ -76,9 +76,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         //service与activity 之间的通信
         bindService = findViewById(R.id.bind_service);
-        onBindService = findViewById(R.id.onbind_service);
+        unBindService = findViewById(R.id.unbind_service);
         bindService.setOnClickListener(this);
-        onBindService.setOnClickListener(this);
+        unBindService.setOnClickListener(this);
 
         //IntentService
         startIntentService = findViewById(R.id.start_intent_service);
@@ -145,7 +145,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 //绑定服务
                 bindService(bindIntent, connection, BIND_AUTO_CREATE);
                 break;
-            case R.id.onbind_service:
+            case R.id.unbind_service:
                 //解绑服务
                 unbindService(connection);
                 break;

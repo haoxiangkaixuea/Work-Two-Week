@@ -37,9 +37,9 @@ public class MainActivity3 extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_main3);
 
         transformData = 0;
-        textService = findViewById(R.id.servicetext);
+        textService = findViewById(R.id.service_text);
         Button bindBtn = findViewById(R.id.bind);
-        Button unBindBtn = findViewById(R.id.onbind);
+        Button unBindBtn = findViewById(R.id.un_bind);
         Button clearBt = findViewById(R.id.clear);
         bindBtn.setOnClickListener(this);
         unBindBtn.setOnClickListener(this);
@@ -80,7 +80,7 @@ public class MainActivity3 extends AppCompatActivity implements View.OnClickList
                     Toast.makeText(this, "Bind Service Success!", Toast.LENGTH_SHORT).show();
                 }
                 break;
-            case R.id.onbind:
+            case R.id.un_bind:
                 if (bind) {
                     //从Service中获取data数值
                     transformData = binder.getData();

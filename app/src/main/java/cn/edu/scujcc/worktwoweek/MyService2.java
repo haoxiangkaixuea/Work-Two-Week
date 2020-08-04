@@ -57,7 +57,7 @@ public class MyService2 extends Service {
         /**
          * onDataChange
          *
-         * @param data
+         * @param data 改变数据
          */
         void onDataChange(String data);
     }
