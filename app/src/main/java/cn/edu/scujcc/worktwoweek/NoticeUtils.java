@@ -16,7 +16,7 @@ import androidx.core.app.NotificationCompat;
 import static cn.edu.scujcc.worktwoweek.MainActivity.SEND_NOTICE;
 
 public class NoticeUtils {
-    public void SendNotice(Context context) {
+    public void sendNotice(Context context) {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             // 通知渠道组的id.

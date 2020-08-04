@@ -37,7 +37,6 @@ public class MyService2 extends Service {
             }
         }).start();
 
-
     }
 
     public Callback getCallback() {
@@ -66,7 +65,7 @@ public class MyService2 extends Service {
         }
 
         //获取从Activity传来的数据
-        void TransferData(int mData) {
+        void transferData(int mData) {
             data = mData;
         }
 

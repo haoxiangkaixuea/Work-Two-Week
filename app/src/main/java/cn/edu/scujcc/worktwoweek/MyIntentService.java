@@ -13,7 +13,8 @@ public class MyIntentService extends IntentService {
     public static final String TAG = "MyIntentService";
 
     public MyIntentService() {
-        super("MyIntentService");//调用父类的有参构造函数
+        //调用父类的有参构造函数
+        super("MyIntentService");
     }
 
     @Override

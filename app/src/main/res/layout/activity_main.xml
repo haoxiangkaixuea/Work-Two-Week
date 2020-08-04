@@ -8,17 +8,6 @@
     android:orientation="horizontal"
     tools:context=".MainActivity">
 
-    <!--        <fragment-->
-    <!--        android:id="@+id/right_fragment"-->
-    <!--        android:name="cn.edu.scujcc.worktwoweek.RightFragment"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="match_parent"-->
-    <!--        android:layout_marginTop="80dp"-->
-    <!--        android:layout_weight="3"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintHorizontal_bias="0.0"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"/>-->
-
     <fragment
         android:id="@+id/left_fragment"
         android:name="cn.edu.scujcc.worktwoweek.LeftFragment"
@@ -37,99 +26,87 @@
 
     <Button
         android:id="@+id/startserivce"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:text="STARTSERVICE"
         android:background="@drawable/button_img"
         android:focusable="true"
+        android:text="START_SERVICE"
         android:textColor="@color/red"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/stopserivce"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:text="STOPSERVICE"
         android:background="@drawable/button_img"
         android:focusable="true"
+        android:text="STOP_SERVICE"
         android:textColor="@color/red"
         app:layout_constraintStart_toEndOf="@+id/startserivce"
         app:layout_constraintTop_toTopOf="@+id/startserivce" />
 
     <Button
         android:id="@+id/bind_service"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Bind_Service"
         android:background="@drawable/button_img"
         android:focusable="true"
+        android:text="Bind_Service"
         android:textColor="@color/red"
         app:layout_constraintStart_toStartOf="@+id/startserivce"
         app:layout_constraintTop_toBottomOf="@+id/startserivce" />
 
     <Button
         android:id="@+id/onbind_service"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:background="@drawable/button_img"
         android:focusable="true"
-        android:textColor="@color/red"
         android:text="Onbind_Service"
+        android:textColor="@color/red"
         app:layout_constraintStart_toEndOf="@+id/bind_service"
         app:layout_constraintTop_toTopOf="@+id/bind_service" />
 
     <Button
         android:id="@+id/start_intent_service"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="StartIntentService"
         android:background="@drawable/button_img"
         android:focusable="true"
+        android:text="Start_IntentService"
         android:textColor="@color/red"
         app:layout_constraintStart_toStartOf="@+id/bind_service"
         app:layout_constraintTop_toBottomOf="@+id/bind_service" />
 
     <Button
         android:id="@+id/send_broadcast"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="StandardBroadcast"
         android:background="@drawable/button_img"
         android:focusable="true"
+        android:text="Standard_Broadcast"
         android:textColor="@color/red"
         app:layout_constraintStart_toStartOf="@+id/start_intent_service"
         app:layout_constraintTop_toBottomOf="@+id/start_intent_service" />
 
     <Button
-        android:id="@+id/send_orderbroadcast"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="OraderBrodacast"
-        android:background="@drawable/button_img"
-        android:focusable="true"
-        android:textColor="@color/red"
-        app:layout_constraintStart_toStartOf="@+id/send_broadcast"
-        app:layout_constraintTop_toBottomOf="@+id/send_broadcast" />
-
-    <Button
         android:id="@+id/send_notice"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:background="@drawable/button_img"
         android:focusable="true"
         android:text="SEND_NOTICE"
         android:textColor="@color/red"
-        app:layout_constraintStart_toStartOf="@+id/send_orderbroadcast"
-        app:layout_constraintTop_toBottomOf="@+id/send_orderbroadcast" />
+        app:layout_constraintStart_toStartOf="@+id/send_broadcast"
+        app:layout_constraintTop_toBottomOf="@+id/send_broadcast" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

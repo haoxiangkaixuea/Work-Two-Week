@@ -6,6 +6,7 @@ import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
+import android.os.Looper;
 import android.os.Message;
 import android.view.View;
 import android.widget.Button;
@@ -14,21 +15,16 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import org.jetbrains.annotations.NotNull;
+
 public class MainActivity3 extends AppCompatActivity implements View.OnClickListener, ServiceConnection {
     MyService2.MyBinder binder = null;
     private TextView textService;
     private boolean bind = false;
     private int transformData;
-    //    private static class AppHandler extends Handler {
-//        //弱引用，在垃圾回收时，被回收
-//        WeakReference<Activity> activity;
-//
-//        AppHandler(Activity activity){
-//            this.activity=new WeakReference<Activity>(activity);
-//        }
-    private Handler handler = new Handler() {
+    private Handler handler = new Handler(Looper.getMainLooper()) {
         @Override
-        public void handleMessage(Message msg) {
+        public void handleMessage(@NotNull Message msg) {
             super.handleMessage(msg);
             //在此处更新UI
             textService.setText(msg.obj.toString());
@@ -56,7 +52,7 @@ public class MainActivity3 extends AppCompatActivity implements View.OnClickList
         binder = (MyService2.MyBinder) service;
 
         //向Service传递数据 TransformData
-        binder.TransferData(transformData);
+        binder.transferData(transformData);
         //获取从Service传递的MyService对象
         MyService2 myService2 = binder.getService();
         //接口回调 监控Service中的数据变化 并在handler中更新UI

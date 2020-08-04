@@ -10,9 +10,11 @@ import android.widget.Toast;
  * @author Administrator
  */
 public class AnotherBroadcastReceiver extends BroadcastReceiver {
+    private static final String TAG = "Another";
+
     @Override
     public void onReceive(Context context, Intent intent) {
         Toast.makeText(context, "received in orderAnotherBroadcastReceiver", Toast.LENGTH_SHORT).show();
-        Log.d("Another", "AnotherBroadcastReceiver");
+        Log.d(TAG, "AnotherBroadcastReceiver");
     }
 }

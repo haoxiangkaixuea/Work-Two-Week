@@ -26,6 +26,7 @@ import androidx.fragment.app.FragmentTransaction;
  * @author Administrator
  */
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+    public static final String TAG = "MainActivity";
     public static final int SEND_NOTICE = 1;
     private Button mLeft;
     private Button mStart, mStop;
@@ -52,7 +53,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             downLoadBinder = ((MyService.DownLoadBinder) service);
             downLoadBinder.startDownload();
             downLoadBinder.seeProgress();
-            //System.out.println("Service连接成功");
         }
     };
 
@@ -103,12 +103,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     "cn.edu.scujcc.worktwoweek.MyBroadcastsReceiver"));
             sendBroadcast(intentStander);
         });
-        //有序广播
-        sendOrderBroadcast = findViewById(R.id.send_orderbroadcast);
-        sendOrderBroadcast.setOnClickListener(v -> {
-            Intent intentOrder = new Intent("com.example.broadcasttest.MY_BROADCAST");
-            //sendOrderedBroadcast(intentOrder, null);
-        });
 
         //Notification通知
         sendNotice = findViewById(R.id.send_notice);
@@ -120,7 +114,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     protected void onDestroy() {
-        Log.d("TAG", "onDestroy");
+        Log.d(TAG, "onDestroy");
         super.onDestroy();
 
         //动态注册的广播接收器在最后一定要在onDestroy中取消注册,调用unbindService方法取消注册
@@ -158,7 +152,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             //IntentService
             case R.id.start_intent_service:
-                Log.d("MainActivity", "Thread id is" + Thread.currentThread().getId());
+                Log.d(TAG, "Thread id is" + Thread.currentThread().getId());
                 Intent intentService = new Intent(this, MyIntentService.class);
                 startService(intentService);
                 break;
@@ -166,7 +160,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             //notification
             case R.id.send_notice:
                 NoticeUtils noticeUtils = new NoticeUtils();
-                noticeUtils.SendNotice(this);
+                noticeUtils.sendNotice(this);
                 break;
             default:
                 break;
@@ -199,15 +193,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     NetworkCapabilities networkCapabilities = connectivity.getNetworkCapabilities(networks);
                     if (networkCapabilities != null) {
                         if (networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)) {
-                            Toast.makeText(context, "-----------wifi", Toast.LENGTH_SHORT).show();
-                            Log.e("-----------wifi", "wifi");
+                            Toast.makeText(context, "wifi", Toast.LENGTH_SHORT).show();
+                            Log.e(TAG, "wifi");
                         } else if (networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)) {
-                            Toast.makeText(context, "-----------流量", Toast.LENGTH_SHORT).show();
-                            Log.e("-----------流量", "手机流量");
+                            Toast.makeText(context, "流量", Toast.LENGTH_SHORT).show();
+                            Log.e(TAG, "手机流量");
                         }
                     } else {
-                        Toast.makeText(context, "-----------没有网路", Toast.LENGTH_SHORT).show();
-                        Log.e("------------没有网络", "没有网络");
+                        Toast.makeText(context, "没有网路", Toast.LENGTH_SHORT).show();
+                        Log.e(TAG, "没有网络");
                     }
                 }
             }

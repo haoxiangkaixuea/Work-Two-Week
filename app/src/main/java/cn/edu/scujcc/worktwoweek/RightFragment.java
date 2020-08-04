@@ -38,7 +38,6 @@ public class RightFragment extends Fragment {
         View view = inflater.inflate(R.layout.activity_right_fragment, container, false);
 
         tvShow = view.findViewById(R.id.right_fragment);
-
         return view;
     }
 

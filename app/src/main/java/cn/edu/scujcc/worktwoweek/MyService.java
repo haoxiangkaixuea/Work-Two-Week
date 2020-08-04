@@ -24,7 +24,6 @@ public class MyService extends Service {
     public MyService() {
     }
 
-    //创建前台服务
     @Override
     public void onCreate() {
         super.onCreate();
@@ -60,14 +59,12 @@ public class MyService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Log.d(TAG, "onStartCommand");
-
         return super.onStartCommand(intent, flags, startId);
     }
 
     @Override
     public IBinder onBind(Intent intent) {
         return mBinder;
-        // throw new UnsupportedOperationException("Not yet implemented");
     }
 
     @Override
@@ -75,11 +72,9 @@ public class MyService extends Service {
         super.onDestroy();
         Log.d(TAG, "onDestroy");
         stopForeground(true);
-
     }
 
-    //服务与活动之间的通信，在DownLoadBinder里提供一个下载方法
-    public class DownLoadBinder extends Binder {
+    public static class DownLoadBinder extends Binder {
         //开始下载
         public void startDownload() {
             Log.d(TAG, "startDownload");

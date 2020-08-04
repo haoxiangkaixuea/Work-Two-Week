@@ -8,7 +8,6 @@ import androidx.appcompat.app.AppCompatActivity;
  * @author Administrator
  */
 public class NotificationActivity extends AppCompatActivity {
-    //通知的第二个界面
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

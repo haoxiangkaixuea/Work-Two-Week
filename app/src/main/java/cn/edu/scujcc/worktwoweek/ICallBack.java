@@ -1,6 +1,9 @@
 package cn.edu.scujcc.worktwoweek;
 
 public interface ICallBack {
-    void get_message_from_Fragment(String string);
+    /**
+     * @param string 传递消息
+     */
+    void getMessageFromFragment(String string);
 
 }
