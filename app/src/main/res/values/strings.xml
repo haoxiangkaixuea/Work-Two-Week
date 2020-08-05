@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">MainActivity</string>
-    <string name="activity2">FragmentActivity</string>
+    <string name="activity2">ActivityFragment</string>
     <string name="activity3">ServiceActivity</string>
+    <string name="activity4">FragmentActivity</string>
     <string name="group_name">yanglijun</string>
     <string name="channel_name">one news</string>
     <string name="channel_description">android.provider.Settings.Secure to android.provider.Settings.Global.</string>

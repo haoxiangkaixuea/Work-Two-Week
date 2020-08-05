@@ -14,8 +14,8 @@ public class PoreBarActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_progre_bar);
 
-        final ProgressBar bar = (ProgressBar) findViewById(R.id.progress);
-        final TextView textView = (TextView) findViewById(R.id.tvProgress);
+        final ProgressBar bar = findViewById(R.id.progress);
+        final TextView textView = findViewById(R.id.tvProgress);
         new Thread() {
             @Override
             public void run() {
