@@ -9,8 +9,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 public class MainActivity2 extends AppCompatActivity {
-    Button sendActivity;
-    TextView textFragment;
+    private TextView textFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,7 +18,7 @@ public class MainActivity2 extends AppCompatActivity {
 
         //  Fragment ----> Activity
         textFragment = findViewById(R.id.receive_fragment);
-        sendActivity = findViewById(R.id.receive_fragment_button);
+        Button sendActivity = findViewById(R.id.receive_fragment_button);
         // 步骤1：获取FragmentManager
         FragmentManager manager = getSupportFragmentManager();
         // 步骤2：获取FragmentTransaction
