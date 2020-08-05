@@ -172,6 +172,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             //IntentService
             case R.id.start_intent_service:
                 Log.d(TAG, "Thread id is" + Thread.currentThread().getId());
+                pb.setVisibility(View.VISIBLE);
                 Intent intentService = new Intent(this, MyIntentService.class);
                 startService(intentService);
                 break;
@@ -255,6 +256,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     tv.setText("线程进行中");
                 } else if (progress >= 100) {
                     tv.setText("线程结束");
+                    pb.setVisibility(View.GONE);
                 }
                 pb.setProgress(progress);
             }

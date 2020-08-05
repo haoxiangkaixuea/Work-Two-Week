@@ -84,6 +84,7 @@
         android:focusable="true"
         android:text="Start_IntentService"
         android:textColor="@color/red"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/bind_service"
         app:layout_constraintTop_toBottomOf="@+id/bind_service" />
 
@@ -92,7 +93,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/button_img"
         android:focusable="true"
@@ -114,6 +115,7 @@
         android:focusable="true"
         android:text="SEND_NOTICE"
         android:textColor="@color/red"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/send_broadcast"
         app:layout_constraintTop_toBottomOf="@+id/send_broadcast" />
 
@@ -122,7 +124,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:text="线程未开启"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="@+id/start_intent_service"
@@ -130,14 +132,14 @@
 
     <ProgressBar
         android:id="@+id/prb"
-        style="?android:attr/progressBarStyleSmall"
+        style="?android:attr/progressBarStyleLarge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
         android:layout_gravity="center_vertical"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:max="100"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv" />
