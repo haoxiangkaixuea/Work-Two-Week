@@ -249,7 +249,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         @Override
         public void onReceive(Context context, Intent intent) {
             //根据IntentService中的发送的广播来进行UI更新
-            if (intent.getAction().equals(ACTION)) {
+            if (ACTION.equals(intent.getAction())) {
                 int progress = intent.getIntExtra("progress", 0);
                 if (progress > 0 && progress < 100) {
                     tv.setText("线程进行中");
