@@ -38,7 +38,7 @@
 
 添加碎片：onAttach(),onCreate(),onCreateView(),onActivityCreate(),onStart(),onResume()，碎片已经激活
 
-当用户点击回退（碎片被添加到返回栈）或者碎片被替换或移除：onPause(),onStop(),onDestroyView(),onDestroy,onDetach().
+当用户点击回退（碎片被添加到返回栈）或者碎片被替换或移除：onPause(),onStop(),onDestroyView(),onDestroy,onDetach()。
 
 
 ### 动态添加碎片：
@@ -98,7 +98,7 @@ bindService用于绑定一个服务。这时会调用服务中的onBind方法，
 
 方法：在服务里面创建一个继承自Binder的类(Binder实现IBinder接口)，最后活动该类的实例，在onBind里面返回实例对象。
 
-在活动里面创建ServiceConnection类，冲重写类里面的onServiceDisconnected和onServiceConnected方法，
+在活动里面创建ServiceConnection类，重写类里面的onServiceDisconnected和onServiceConnected方法。
 
 ## 3、服务与活动之间的通信
 
@@ -109,7 +109,7 @@ bindService用于绑定一个服务。这时会调用服务中的onBind方法，
 获取DownLoadBinder类的实例，在onBind方法里面返回这个实例，
 
 创建ServiceConnection匿名类（匿名内部类只能使用一次，它通常用来简化代码编写，但使用匿名内部类还有个前提条件：必须继承一个父类或实现一个接口）
-重写onServiceDisconnected（解绑服务时调用），onServiceConnected（绑定服务时调用）方法，、
+重写onServiceDisconnected（解绑服务时调用），onServiceConnected（绑定服务时调用）方法，
 向下转型的得到DownLoadBinder实例，然后调用DownLoadBinder中的两个方法，
 
 ## 4、前台服务（Intentservice）
@@ -122,7 +122,7 @@ bindService用于绑定一个服务。这时会调用服务中的onBind方法，
 
  为避免忘记创建子线程，或者忘记调用selfstop()方法，创建一个简单的异步的，会自动停止的服务，Android专门提供了一个IntentService类来解决这个问题
 
-方法：创建一个MyIntentService类继承自IntentService,重写里面的MyIntentService和onHandleIntent方法，
+方法：创建一个MyIntentService类继承自IntentService,重写里面的MyIntentService和onHandleIntent方法。
 
 ## Broadcast
 
@@ -130,9 +130,9 @@ bindService用于绑定一个服务。这时会调用服务中的onBind方法，
 
 有序广播：是一种同步执行的广播，发送一条广播，优先级高的广播接收器会先接收到这条消息，当这个广播接收器处理完逻辑之后才会继续传给下一个广播，广播的接收是有先后顺序的，而且先接收广播的接收器可以截断这条消息，这样后面的接收器就不能收到这条消息了。
 
-方法：创建一个AnotherBroadcastReceiver类继承自BroadcastReceiver，然后直接在类里面写一条Toast语句，
+方法：创建一个AnotherBroadcastReceiver类继承自BroadcastReceiver，然后直接在类里面写一条Toast语句。
 
-在AndroidManifest.xml中注册，使用priority给广播接收器设定优先级，定义一条action，
+在AndroidManifest.xml中注册，使用priority给广播接收器设定优先级，定义一条action。
 
 最后使用Intent获取action,调用sendOrderedBroadcast发送广播。
 
@@ -150,17 +150,17 @@ bindService用于绑定一个服务。这时会调用服务中的onBind方法，
 
 ### 动态注册：
 
-在代码中注册，动态注册的广播接收器在最后一定要在onDestroy中取消注册
+在代码中注册，动态注册的广播接收器在最后一定要在onDestroy中取消注册。
 
 方法：创建一个NetworkChangeRecevier类，继承自Broadcast-Receive,并且重写父类的onReceive方法。主要是给用户发送提示消息。发送一条Toast提示网络的变化。
 
-先获取IntentFilter实例，用addAction添加相应action，当网路发生变化是，系统会发出下面的广播，我们接收器要监听什么广播，就添加什么action，创建NetworkChangeRecevier实例，调用registerReceiver注册，把前面两个实例对象都传进去。最后NetworkChangeRecevier会接收到一条值为android.net.conn.CONNECTIVITY_CHANGE的广播，实现了监听网路变化的功能
+先获取IntentFilter实例，用addAction添加相应action，当网路发生变化是，系统会发出下面的广播，我们接收器要监听什么广播，就添加什么action，创建NetworkChangeRecevier实例，调用registerReceiver注册，把前面两个实例对象都传进去。最后NetworkChangeRecevier会接收到一条值为android.net.conn.CONNECTIVITY_CHANGE的广播，实现了监听网路变化的功能。
 
 动态注册的广播接收器最后一定要在onDestroy中调用unregisterReceiver()取消注册。
 
 ### 静态注册：
 
-在AndroidManifest.xml中注册，
+在AndroidManifest.xml中注册。
 
 只需要创建一个BootCompletReceiver类继承自BroadcastRecevie，然后写一条Toast消息。
 
@@ -181,11 +181,11 @@ PendingIntent pi = PendingIntent.getActivity(this, 0, intentnotice, 0);
 
 getSystemService里面需要穿一个字符串，一般传Context.NOTIFICATION_SERVICE
 
-接下来要用Bulider来构造Notification对象，这里我们使用NotificationCompat类来构造创建Notification对象确保我们的程序字啊所有android系统版本都能运行
+接下来要用Bulider来构造Notification对象，这里我们使用NotificationCompat类来构造创建Notification对象确保我们的程序字啊所有android系统版本都能运行，
 
 使用提供的api来完成这个通知，一般有通知的标题setContentTitle，通知的内容setContentText,还可以通过style设置大文本，图片，发出通知的时间setWhen，通知的小标题setSmallIcon，
 
-通知点开后的大标题setLargeIcon，启动通知活动setContentIntent，设置取消通知etAutoCancel，设置通知的重要程度，setPriority
+通知点开后的大标题setLargeIcon，启动通知活动setContentIntent，设置取消通知etAutoCancel，设置通知的重要程度，setPriority，
 
 最后让通知显示出来，manager.notify(1, notification);
 
