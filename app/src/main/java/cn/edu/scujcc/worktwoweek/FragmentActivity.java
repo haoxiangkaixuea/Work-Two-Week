@@ -8,13 +8,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-public class MainActivity2 extends AppCompatActivity {
+public class FragmentActivity extends AppCompatActivity {
     private TextView textFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main2);
+        setContentView(R.layout.activity_fragment);
 
         //  Fragment ----> Activity
         textFragment = findViewById(R.id.receive_fragment);

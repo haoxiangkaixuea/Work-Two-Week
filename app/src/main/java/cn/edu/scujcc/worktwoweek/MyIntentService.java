@@ -3,7 +3,6 @@ package cn.edu.scujcc.worktwoweek;
 import android.app.IntentService;
 import android.content.Intent;
 import android.os.IBinder;
-import android.util.Log;
 
 import androidx.annotation.Nullable;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
@@ -12,7 +11,6 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
  * @author Administrator
  */
 public class MyIntentService extends IntentService {
-    public static final String TAG = "MyIntentService";
     private int count = 0;
     private boolean isRunning = true;
     private LocalBroadcastManager mLocalBroadcastManager;
@@ -52,7 +50,6 @@ public class MyIntentService extends IntentService {
 
     @Override
     public void onCreate() {
-        Log.i(TAG, "onCreate");
         super.onCreate();
     }
 
@@ -62,7 +59,6 @@ public class MyIntentService extends IntentService {
      **/
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Log.i(TAG, "onStartCommand");
         return super.onStartCommand(intent, flags, startId);
     }
 
@@ -74,6 +70,5 @@ public class MyIntentService extends IntentService {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Log.d(TAG, "onDestroy");
     }
 }

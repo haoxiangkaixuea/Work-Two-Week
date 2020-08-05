@@ -10,7 +10,6 @@ import android.graphics.Color;
 import android.os.Binder;
 import android.os.Build;
 import android.os.IBinder;
-import android.util.Log;
 
 import androidx.core.app.NotificationCompat;
 
@@ -18,7 +17,6 @@ import androidx.core.app.NotificationCompat;
  * @author Administrator
  */
 public class MyService extends Service {
-    public static final String TAG = "MyService";
     private DownLoadBinder mBinder = new DownLoadBinder();
 
     public MyService() {
@@ -27,7 +25,6 @@ public class MyService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-        Log.d(TAG, "onCreate");
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
             NotificationChannel notificationChannel = mNotificationManager.getNotificationChannel("MyService");
@@ -57,7 +54,6 @@ public class MyService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Log.d(TAG, "onStartCommand");
         return super.onStartCommand(intent, flags, startId);
     }
 
@@ -69,19 +65,16 @@ public class MyService extends Service {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Log.d(TAG, "onDestroy");
         stopForeground(true);
     }
 
     public static class DownLoadBinder extends Binder {
         //开始下载
         public void startDownload() {
-            Log.d(TAG, "startDownload");
         }
 
         //查看下载进度
         public void seeProgress() {
-            Log.d(TAG, "seeProgress");
         }
     }
 }

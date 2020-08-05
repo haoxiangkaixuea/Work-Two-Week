@@ -12,7 +12,6 @@ import android.net.NetworkCapabilities;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -29,7 +28,6 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
  * @author Administrator
  */
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-    public static final String TAG = "MainActivity";
     public static final int SEND_NOTICE = 1;
     public static final String ACTION = "com.iffiness.intensified.metrication";
     private TextView tv;
@@ -129,7 +127,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     protected void onDestroy() {
-        Log.d(TAG, "onDestroy");
         super.onDestroy();
 
         if (mLocalBroadcastManager != null && mMyBroadcastReceiver != null) {
@@ -171,7 +168,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             //IntentService
             case R.id.start_intent_service:
-                Log.d(TAG, "Thread id is" + Thread.currentThread().getId());
                 pb.setVisibility(View.VISIBLE);
                 Intent intentService = new Intent(this, MyIntentService.class);
                 startService(intentService);
@@ -232,14 +228,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     if (networkCapabilities != null) {
                         if (networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)) {
                             Toast.makeText(context, "wifi", Toast.LENGTH_SHORT).show();
-                            Log.e(TAG, "wifi");
                         } else if (networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)) {
                             Toast.makeText(context, "流量", Toast.LENGTH_SHORT).show();
-                            Log.e(TAG, "手机流量");
                         }
                     } else {
                         Toast.makeText(context, "没有网路", Toast.LENGTH_SHORT).show();
-                        Log.e(TAG, "没有网络");
                     }
                 }
             }
@@ -253,9 +246,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             if (ACTION.equals(intent.getAction())) {
                 int progress = intent.getIntExtra("progress", 0);
                 if (progress > 0 && progress < 100) {
-                    tv.setText("线程进行中");
+                    tv.setText(getResources().getString(R.string.progress));
                 } else if (progress >= 100) {
-                    tv.setText("线程结束");
+                    tv.setText(getResources().getString(R.string.unprogress));
                     pb.setVisibility(View.GONE);
                 }
                 pb.setProgress(progress);

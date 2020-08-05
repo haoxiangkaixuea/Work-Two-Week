@@ -17,8 +17,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import org.jetbrains.annotations.NotNull;
 
-public class MainActivity3 extends AppCompatActivity implements View.OnClickListener, ServiceConnection {
-    MyService2.MyBinder binder = null;
+public class ServiceActivity extends AppCompatActivity implements View.OnClickListener, ServiceConnection {
+    MyBindService.MyBinder binder = null;
     private TextView textService;
     private boolean bind = false;
     private int transformData;
@@ -34,7 +34,7 @@ public class MainActivity3 extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main3);
+        setContentView(R.layout.activity_service);
 
         transformData = 0;
         textService = findViewById(R.id.service_text);
@@ -49,12 +49,12 @@ public class MainActivity3 extends AppCompatActivity implements View.OnClickList
     @Override
     public void onServiceConnected(ComponentName name, IBinder service) {
         //获取binder对象
-        binder = (MyService2.MyBinder) service;
+        binder = (MyBindService.MyBinder) service;
 
         //向Service传递数据 TransformData
         binder.transferData(transformData);
         //获取从Service传递的MyService对象
-        MyService2 myService2 = binder.getService();
+        MyBindService myService2 = binder.getService();
         //接口回调 监控Service中的数据变化 并在handler中更新UI
         myService2.setCallback(data -> {
             Message msg = new Message();
@@ -75,7 +75,7 @@ public class MainActivity3 extends AppCompatActivity implements View.OnClickList
                 if (!bind) {
                     bind = true;
                     //服务绑定后，会调用 onServiceConnected
-                    Intent bindIntent = new Intent(this, MyService2.class);
+                    Intent bindIntent = new Intent(this, MyBindService.class);
                     bindService(bindIntent, this, BIND_AUTO_CREATE);
                     Toast.makeText(this, "Bind Service Success!", Toast.LENGTH_SHORT).show();
                 }

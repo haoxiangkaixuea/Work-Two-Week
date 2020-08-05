@@ -5,6 +5,8 @@
     <string name="activity4">FragmentActivity</string>
     <string name="group_name">yanglijun</string>
     <string name="channel_name">one news</string>
+    <string name="progress">线程进行中</string>
+    <string name="unprogress">线程结束</string>
     <string name="channel_description">android.provider.Settings.Secure to android.provider.Settings.Global.</string>
     <string name="big_context">method int androidx.appcompat.widget.DropDownListView.lookForSelectablePosition(int, boolean) " +
                                 "would have incorrectly overridden the package-private method in android.widget.ListView</string>

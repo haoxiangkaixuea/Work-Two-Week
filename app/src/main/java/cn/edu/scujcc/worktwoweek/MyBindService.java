@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.os.Binder;
 import android.os.IBinder;
 
-public class MyService2 extends Service {
+public class MyBindService extends Service {
     public int data = 0;
     private boolean connecting = false;
     private Callback callback;
@@ -65,8 +65,8 @@ public class MyService2 extends Service {
     class MyBinder extends Binder {
 
         //向Activity返回MyService2实例
-        MyService2 getService() {
-            return MyService2.this;
+        MyBindService getService() {
+            return MyBindService.this;
         }
 
         //获取从Activity传来的数据
