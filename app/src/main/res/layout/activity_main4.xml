@@ -5,16 +5,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/back_img"
-    tools:context=".AnotherLeftFragment">
+    tools:context=".MainActivity4">
+
+
+    <FrameLayout
+        android:id="@+id/fragment_two_container"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/text_fragment"
+        android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:text="我是fragment"
+        android:layout_marginTop="84dp"
+        android:text="我是Activity"
         android:textSize="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

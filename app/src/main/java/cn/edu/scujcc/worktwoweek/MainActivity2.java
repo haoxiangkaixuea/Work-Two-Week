@@ -17,25 +17,6 @@ public class MainActivity2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
-        //  Activity ----> Fragment
-        // 步骤1：获取FragmentManager
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        // 步骤2：获取FragmentTransaction
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        // 步骤3：创建需要添加的Fragment
-        final AnotherLeftFragment fragment = new AnotherLeftFragment();
-        // 步骤4:创建Bundle对象
-        // 作用:存储数据，并传递到Fragment中
-        Bundle bundle = new Bundle();
-        // 步骤5:往bundle中添加数据
-        bundle.putString("message", "消息:我来自Activity");
-        // 步骤6:把数据设置到Fragment中
-        fragment.setArguments(bundle);
-        // 步骤7：动态添加fragment
-        // 即将创建的fragment添加到Activity布局文件中定义的占位符中（FrameLayout）
-        fragmentTransaction.add(R.id.fragment_container, fragment);
-        fragmentTransaction.commit();
-
         //  Fragment ----> Activity
         textFragment = findViewById(R.id.receive_fragment);
         sendActivity = findViewById(R.id.receive_fragment_button);
