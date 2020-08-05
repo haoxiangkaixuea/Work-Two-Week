@@ -27,7 +27,6 @@ public class MyIntentService extends IntentService {
         setIntentRedelivery(true);
     }
 
-
 //    @Override
 //    protected void onHandleIntent(@Nullable Intent intent) {
 //        MainActivity mainActivity = new MainActivity();

@@ -93,8 +93,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         unBindService.setOnClickListener(this);
 
         //IntentService
-        tv = (TextView) findViewById(R.id.tv);
-        pb = (ProgressBar) findViewById(R.id.prb);
+        tv = findViewById(R.id.tv);
+        pb = findViewById(R.id.prb);
         startIntentService = findViewById(R.id.start_intent_service);
         startIntentService.setOnClickListener(this);
         initBroadcastReceiver();
@@ -172,7 +172,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             //IntentService
             case R.id.start_intent_service:
                 Log.d(TAG, "Thread id is" + Thread.currentThread().getId());
-                Intent intentService = new Intent(this, ProgressBar.class);
+                Intent intentService = new Intent(this, MyIntentService.class);
                 startService(intentService);
                 break;
 
