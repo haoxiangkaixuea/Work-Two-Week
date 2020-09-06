@@ -32,14 +32,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public static final String ACTION = "com.iffiness.intensified.metrication";
     private TextView tv;
     private ProgressBar pb;
-    private Button mLeft;
-    private Button mStart, mStop;
-    private Button bindService, unBindService;
-    private Button startIntentService;
-    private Button sendStandardBroadcast;
-    private Button sendNotice;
-    private MyService.DownLoadBinder downLoadBinder;
-    private IntentFilter intentFilter;
     private NetworkChangeReceiver networkChangeReceiver;
     private LocalBroadcastManager mLocalBroadcastManager;
     private MyBroadcastReceiver mMyBroadcastReceiver;
@@ -59,7 +51,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
-            downLoadBinder = ((MyService.DownLoadBinder) service);
+            MyService.DownLoadBinder downLoadBinder = ((MyService.DownLoadBinder) service);
             downLoadBinder.startDownload();
             downLoadBinder.seeProgress();
         }
@@ -71,13 +63,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         //给左侧碎片添加一个点击实例，点击左侧的按钮就会把右侧碎片替换为新的碎片
-        mLeft = findViewById(R.id.left);
+        Button mLeft = findViewById(R.id.left);
         mLeft.setOnClickListener(this);
         replaceFragment(new RightFragment());
 
         //Service
-        mStart = findViewById(R.id.startserivce);
-        mStop = findViewById(R.id.stopserivce);
+        Button mStart = findViewById(R.id.startserivce);
+        Button mStop = findViewById(R.id.stopserivce);
         mStart.setOnClickListener(this);
         mStop.setOnClickListener(this);
 
@@ -85,20 +77,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // bindService(startIntent, connection, Context.BIND_AUTO_CREATE);
 
         //service与activity 之间的通信
-        bindService = findViewById(R.id.bind_service);
-        unBindService = findViewById(R.id.unbind_service);
+        Button bindService = findViewById(R.id.bind_service);
+        Button unBindService = findViewById(R.id.unbind_service);
         bindService.setOnClickListener(this);
         unBindService.setOnClickListener(this);
 
         //IntentService
         tv = findViewById(R.id.tv);
         pb = findViewById(R.id.prb);
-        startIntentService = findViewById(R.id.start_intent_service);
+        Button startIntentService = findViewById(R.id.start_intent_service);
         startIntentService.setOnClickListener(this);
         initBroadcastReceiver();
 
         //动态注册广播
-        intentFilter = new IntentFilter();
+        IntentFilter intentFilter = new IntentFilter();
         //当网路发生变化是，系统会发出下面的广播，我们接收器要监听什么广播，就添加什么action
         intentFilter.addAction("android.net.conn.CONNECTIVITY_CHANGE");
         //创建NetworkChangeReceiver实例
@@ -109,7 +101,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //实现了监听网路变化的功能
 
         //标准广播
-        sendStandardBroadcast = findViewById(R.id.send_broadcast);
+        Button sendStandardBroadcast = findViewById(R.id.send_broadcast);
         sendStandardBroadcast.setOnClickListener(v -> {
             Intent intentStander = new Intent("com.example.broadcasttest.MY_BROADCAST");
             intentStander.setComponent(new ComponentName("cn.edu.scujcc.worktwoweek",
@@ -118,7 +110,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
 
         //Notification通知
-        sendNotice = findViewById(R.id.send_notice);
+        Button sendNotice = findViewById(R.id.send_notice);
         sendNotice.setOnClickListener(this);
         //方法二：取消通知
         // NotificationManager manager=(NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);

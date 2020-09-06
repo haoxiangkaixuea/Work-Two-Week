@@ -43,19 +43,19 @@
 
 ### 动态添加碎片：
 
-1.创建待添加的碎片实例
+1.创建待添加的碎片实例,
 
 在activity_main中添加一个碎片布局替换原来的碎片，只留下一个未被替换的碎片,
 
-给左侧碎片添加一个点击实例，点击左侧的按钮就会把右侧碎片替换为新的碎片
+给左侧碎片添加一个点击实例，点击左侧的按钮就会把右侧碎片替换为新的碎片,
 
-2.获取FramentManager，在活动中可以直接通过调用getSupportFragmentManager()方法得到
+2.获取FramentManager，在活动中可以直接通过调用getSupportFragmentManager()方法得到,
 
-3.开启一个事务，通过调用beginTransaction()方法开启
+3.开启一个事务，通过调用beginTransaction()方法开启,
 
-4.向容器内添加或替换碎片，一般使用replace()方法实现，需要传入容器的id和待添加的碎片实例
+4.向容器内添加或替换碎片，一般使用replace()方法实现，需要传入容器的id和待添加的碎片实例,
 
-5.提交事务，调用commit()方法完成
+5.提交事务，调用commit()方法完成。
 
 ## Fragment与Activity之间的通信
 

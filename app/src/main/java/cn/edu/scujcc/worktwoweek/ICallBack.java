@@ -1,5 +1,8 @@
 package cn.edu.scujcc.worktwoweek;
 
+/**
+ * @author Administrator
+ */
 public interface ICallBack {
     /**
      * get Message From Fragment

@@ -31,12 +31,7 @@ public class FragmentActivity extends AppCompatActivity {
         transaction.commit();
         sendActivity.setOnClickListener(v -> {
             // 通过接口回调将消息从fragment发送到Activity
-            aFragment.sendMessage(new ICallBack() {
-                @Override
-                public void getMessageFromFragment(String string) {
-                    textFragment.setText(string);
-                }
-            });
+            aFragment.sendMessage(string -> textFragment.setText(string));
         });
     }
 }

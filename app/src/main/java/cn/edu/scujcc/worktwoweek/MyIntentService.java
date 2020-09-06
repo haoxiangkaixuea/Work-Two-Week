@@ -11,8 +11,6 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
  * @author Administrator
  */
 public class MyIntentService extends IntentService {
-    private int count = 0;
-    private boolean isRunning = true;
     private LocalBroadcastManager mLocalBroadcastManager;
 
     /**
@@ -26,8 +24,8 @@ public class MyIntentService extends IntentService {
 
     @Override
     protected void onHandleIntent(@Nullable Intent intent) {
-        count = 0;
-        isRunning = true;
+        int count = 0;
+        boolean isRunning = true;
         while (isRunning) {
             try {
                 count++;

@@ -36,7 +36,6 @@ public class MyBindService extends Service {
                 }
             }
         }).start();
-
     }
 
     public Callback getCallback() {
@@ -78,6 +77,5 @@ public class MyBindService extends Service {
         int getData() {
             return data;
         }
-
     }
 }
