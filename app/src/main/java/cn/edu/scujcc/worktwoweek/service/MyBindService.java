@@ -1,10 +1,13 @@
-package cn.edu.scujcc.worktwoweek;
+package cn.edu.scujcc.worktwoweek.service;
 
 import android.app.Service;
 import android.content.Intent;
 import android.os.Binder;
 import android.os.IBinder;
 
+/**
+ * @author Administrator
+ */
 public class MyBindService extends Service {
     public int data = 0;
     private boolean connecting = false;

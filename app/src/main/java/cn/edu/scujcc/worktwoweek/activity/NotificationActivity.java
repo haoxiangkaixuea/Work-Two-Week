@@ -1,8 +1,10 @@
-package cn.edu.scujcc.worktwoweek;
+package cn.edu.scujcc.worktwoweek.activity;
 
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import cn.edu.scujcc.worktwoweek.R;
 
 /**
  * @author Administrator

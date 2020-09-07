@@ -1,4 +1,4 @@
-package cn.edu.scujcc.worktwoweek;
+package cn.edu.scujcc.worktwoweek.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -10,6 +10,8 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 
 import org.jetbrains.annotations.NotNull;
+
+import cn.edu.scujcc.worktwoweek.R;
 
 /**
  * @author Administrator

@@ -181,7 +181,7 @@ PendingIntent pi = PendingIntent.getActivity(this, 0, intentnotice, 0);
 
 getSystemService里面需要穿一个字符串，一般传Context.NOTIFICATION_SERVICE
 
-接下来要用Bulider来构造Notification对象，这里我们使用NotificationCompat类来构造创建Notification对象确保我们的程序字啊所有android系统版本都能运行，
+接下来要用Bulider来构造Notification对象，这里我们使用NotificationCompat类来构造创建Notification对象确保我们的程序在所有android系统版本都能运行，
 
 使用提供的api来完成这个通知，一般有通知的标题setContentTitle，通知的内容setContentText,还可以通过style设置大文本，图片，发出通知的时间setWhen，通知的小标题setSmallIcon，
 

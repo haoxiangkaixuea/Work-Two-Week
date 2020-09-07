@@ -1,4 +1,4 @@
-package cn.edu.scujcc.worktwoweek;
+package cn.edu.scujcc.worktwoweek.activity;
 
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
@@ -23,6 +23,13 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+
+import cn.edu.scujcc.worktwoweek.R;
+import cn.edu.scujcc.worktwoweek.fragment.AnotherRight;
+import cn.edu.scujcc.worktwoweek.fragment.RightFragment;
+import cn.edu.scujcc.worktwoweek.service.MyIntentService;
+import cn.edu.scujcc.worktwoweek.service.MyService;
+import cn.edu.scujcc.worktwoweek.util.NoticeUtils;
 
 /**
  * @author Administrator
@@ -103,11 +110,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //标准广播
         Button sendStandardBroadcast = findViewById(R.id.send_broadcast);
         sendStandardBroadcast.setOnClickListener(v -> {
-            Intent intentStander = new Intent("com.example.broadcasttest.MY_BROADCAST");
+            //Intent intentStander = new Intent("com.example.broadcasttest.MY_BROADCAST");
+            Intent intentStander = new Intent("android.intent.action.BOOT_COMPLETED");
             intentStander.setComponent(new ComponentName("cn.edu.scujcc.worktwoweek",
-                    "cn.edu.scujcc.worktwoweek.MyBroadcastsReceiver"));
+                    "cn.edu.scujcc.worktwoweek.BootCompleteReceiver"));
             sendBroadcast(intentStander);
         });
+
+        //有序广播
+//        sendStandardBroadcast.setOnClickListener(v -> {
+//            //Intent intentStander = new Intent("com.example.broadcasttest.MY_BROADCAST");
+//            Intent intentOrder = new Intent("com.example.broadcasttest.MY_BROADCAST");
+//            intentOrder.setComponent(new ComponentName("cn.edu.scujcc.worktwoweek",
+//                    "cn.edu.scujcc.worktwoweek.MyBroadcastsReceiver"));
+//            sendOrderedBroadcast(intentOrder,null);
+//        });
 
         //Notification通知
         Button sendNotice = findViewById(R.id.send_notice);
@@ -124,8 +141,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (mLocalBroadcastManager != null && mMyBroadcastReceiver != null) {
             mLocalBroadcastManager.unregisterReceiver(mMyBroadcastReceiver);
         }
-
-        //动态注册的广播接收器在最后一定要在onDestroy中取消注册,调用unbindService方法取消注册
+        //动态注册的广播接收器在最后一定要在onDestroy中取消注册,调用unregisterReceiver方法取消注册
         unregisterReceiver(networkChangeReceiver);
     }
 

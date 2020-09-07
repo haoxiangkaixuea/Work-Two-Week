@@ -1,4 +1,4 @@
-package cn.edu.scujcc.worktwoweek;
+package cn.edu.scujcc.worktwoweek.service;
 
 import android.content.ComponentName;
 import android.content.Intent;
@@ -16,6 +16,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import org.jetbrains.annotations.NotNull;
+
+import cn.edu.scujcc.worktwoweek.R;
 
 public class ServiceActivity extends AppCompatActivity implements View.OnClickListener, ServiceConnection {
     MyBindService.MyBinder binder = null;
@@ -106,5 +108,4 @@ public class ServiceActivity extends AppCompatActivity implements View.OnClickLi
         handler.removeCallbacksAndMessages(null);
         super.onDestroy();
     }
-
 }

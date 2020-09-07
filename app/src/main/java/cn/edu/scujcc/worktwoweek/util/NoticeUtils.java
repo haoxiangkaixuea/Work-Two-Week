@@ -1,4 +1,4 @@
-package cn.edu.scujcc.worktwoweek;
+package cn.edu.scujcc.worktwoweek.util;
 
 import android.app.Notification;
 import android.app.NotificationChannel;
@@ -13,7 +13,10 @@ import android.os.Build;
 
 import androidx.core.app.NotificationCompat;
 
-import static cn.edu.scujcc.worktwoweek.MainActivity.SEND_NOTICE;
+import cn.edu.scujcc.worktwoweek.R;
+import cn.edu.scujcc.worktwoweek.activity.NotificationActivity;
+
+import static cn.edu.scujcc.worktwoweek.activity.MainActivity.SEND_NOTICE;
 
 /**
  * @author Administrator
@@ -27,8 +30,9 @@ public class NoticeUtils {
             // 用户可见的通知渠道组名称.
             CharSequence name = context.getString(R.string.group_name);
             NotificationManager mNotificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-            assert mNotificationManager != null;
-            mNotificationManager.createNotificationChannelGroup(new NotificationChannelGroup(group, name));
+            if (mNotificationManager != null) {
+                mNotificationManager.createNotificationChannelGroup(new NotificationChannelGroup(group, name));
+            }
             mNotificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
             // 通知渠道的id
             String id = "my_channel_01";
@@ -91,8 +95,9 @@ public class NoticeUtils {
                     .setVibrate(new long[]{0, 1000, 1000, 1000})
                     .build();
             //notify让通知显示出来
-            assert manager != null;
-            manager.notify(SEND_NOTICE, notification);
+            if (manager != null) {
+                manager.notify(SEND_NOTICE, notification);
+            }
         } else {
             // Create a notification and set the notification channel.
             // 发布通知

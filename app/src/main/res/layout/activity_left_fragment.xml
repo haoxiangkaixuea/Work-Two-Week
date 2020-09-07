@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/back_img"
-    tools:context=".LeftFragment">
+    tools:context=".fragment.LeftFragment">
 
     <TextView
         android:id="@+id/text_fragment"

@@ -16,5 +16,4 @@ public class MyBroadcastsReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         Toast.makeText(context, "received in standerMyBroadcastReceiver", Toast.LENGTH_SHORT).show();
     }
-
 }

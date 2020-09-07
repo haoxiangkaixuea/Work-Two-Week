@@ -1,4 +1,4 @@
-package cn.edu.scujcc.worktwoweek;
+package cn.edu.scujcc.worktwoweek.service;
 
 import android.app.Notification;
 import android.app.NotificationChannel;
@@ -12,6 +12,8 @@ import android.os.Build;
 import android.os.IBinder;
 
 import androidx.core.app.NotificationCompat;
+
+import cn.edu.scujcc.worktwoweek.R;
 
 /**
  * @author Administrator
@@ -27,7 +29,10 @@ public class MyService extends Service {
         super.onCreate();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-            NotificationChannel notificationChannel = mNotificationManager.getNotificationChannel("MyService");
+            NotificationChannel notificationChannel = null;
+            if (mNotificationManager != null) {
+                notificationChannel = mNotificationManager.getNotificationChannel("MyService");
+            }
             if (notificationChannel == null) {
                 NotificationChannel channel = new NotificationChannel("MyService",
                         "com.example.liyun.testservice", NotificationManager.IMPORTANCE_HIGH);
@@ -39,7 +44,9 @@ public class MyService extends Service {
                 channel.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC);
                 //是否在久按桌面图标时显示此渠道的通知
                 //channel.setShowBadge(true);
-                mNotificationManager.createNotificationChannel(channel);
+                if (mNotificationManager != null) {
+                    mNotificationManager.createNotificationChannel(channel);
+                }
             }
         }
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this, "MyService");

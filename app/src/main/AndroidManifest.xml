@@ -17,7 +17,7 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name=".ActivityFragment"
+            android:name=".fragment.ActivityFragment"
             android:label="@string/activity4">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,11 +26,11 @@
             </intent-filter>
         </activity> <!-- <activity android:name=".AnotherLeftFragment"/> -->
         <service
-            android:name=".MyBindService"
+            android:name=".service.MyBindService"
             android:enabled="true"
             android:exported="true" />
 
-        <activity android:name=".MainActivity">
+        <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -38,7 +38,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".FragmentActivity"
+            android:name=".fragment.FragmentActivity"
             android:label="@string/activity2">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -47,7 +47,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ServiceActivity"
+            android:name=".service.ServiceActivity"
             android:label="@string/activity3">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -56,7 +56,7 @@
             </intent-filter>
         </activity>
         <!-- 静态注册 -->
-        <activity android:name=".NotificationActivity" />
+        <activity android:name=".activity.NotificationActivity" />
 
         <receiver
             android:name=".BootCompleteReceiver"
@@ -66,8 +66,9 @@
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
 
-            <!-- 标准广播 -->
+            <!-- 标准广播 静态注册-->
         </receiver>
+
         <receiver
             android:name=".MyBroadcastsReceiver"
             android:enabled="true"
@@ -89,10 +90,10 @@
         </receiver>
 
         <service
-            android:name=".MyService"
+            android:name=".service.MyService"
             android:enabled="true"
-            android:exported="true" />
-        <service android:name=".MyIntentService" />
+            android:exported="false" />
+        <service android:name=".service.MyIntentService" />
     </application>
 
 </manifest>
